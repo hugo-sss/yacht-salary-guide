@@ -98,31 +98,40 @@ export default function SalaryGuide() {
     loadData();
   }, []);
 
+  const normalizePosition = (pos: string) => {
+    if (pos === 'Chief Officer / First Mate') return 'First Officer';
+    return pos;
+  };
+
+  const normalizedData = useMemo(() => (
+    salaryData.map(d => ({ ...d, position: normalizePosition(d.position) }))
+  ), [salaryData]);
+
   const availablePositions = useMemo(() => 
-    [...new Set(salaryData.map(d => d.position))].sort(), 
-    [salaryData]
+    [...new Set(normalizedData.map(d => d.position))].sort(), 
+    [normalizedData]
   );
   
   const availableYachtSizes = useMemo(() => 
-    [...new Set(salaryData.map(d => d.yacht_size))].sort(), 
-    [salaryData]
+    [...new Set(normalizedData.map(d => d.yacht_size))].sort(), 
+    [normalizedData]
   );
 
   const availableSizesForPosition = useMemo(() => {
     if (!selectedPosition) return availableYachtSizes;
     return [...new Set(
-      salaryData
+      normalizedData
         .filter(d => d.position === selectedPosition)
         .map(d => d.yacht_size)
     )].sort();
-  }, [salaryData, selectedPosition, availableYachtSizes]);
+  }, [normalizedData, selectedPosition, availableYachtSizes]);
 
   const comparisonData = useMemo(() => {
     if (!selectedPosition || !selectedYachtSize) return [];
-    return salaryData.filter(d => 
+    return normalizedData.filter(d => 
       d.position === selectedPosition && d.yacht_size === selectedYachtSize
     );
-  }, [salaryData, selectedPosition, selectedYachtSize]);
+  }, [normalizedData, selectedPosition, selectedYachtSize]);
 
   const averageSalary = useMemo(() => {
     if (comparisonData.length === 0) return { min: 0, max: 0, avg: 0, count: 0 };
@@ -354,11 +363,17 @@ export default function SalaryGuide() {
         <div className="mt-12 glass-card rounded-2xl p-6 border border-white/5">
           <div className="flex flex-col md:flex-row justify-between gap-4 mb-4">
             <h3 className="text-lg font-semibold">Data Sources</h3>
-            <span className="text-white/60">{new Set(salaryData.map(d => d.source)).size} sources</span>
+            <span className="text-white/60">
+              {selectedPosition && selectedYachtSize
+                ? `${comparisonData.length} sources for this combo`
+                : `${new Set(salaryData.map(d => d.source)).size} sources total`}
+            </span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
             {allSources.map(source => {
-              const hasData = salaryData.some(d => d.source === source);
+              const hasData = selectedPosition && selectedYachtSize
+                ? comparisonData.some(d => d.source === source)
+                : salaryData.some(d => d.source === source);
               return (
                 <div key={source} className={`px-3 py-2 rounded-lg text-xs text-center border ${hasData ? sourceColors[source] : 'border-white/5 text-white/30'}`}>
                   {source}
