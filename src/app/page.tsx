@@ -2,14 +2,6 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { 
-  getSalaryData, 
-  getSalaryForPositionAndSize,
-  getUniquePositions,
-  getUniqueYachtSizes,
-  getAverageSalary,
-  type SalaryRecord 
-} from '@/lib/supabase';
-import { 
   Anchor, 
   Wrench, 
   Sparkles, 
@@ -20,6 +12,17 @@ import {
   Loader2
 } from 'lucide-react';
 
+interface SalaryRecord {
+  id: string;
+  position: string;
+  yacht_size: string;
+  min_salary: number;
+  max_salary: number;
+  currency: string;
+  source: string;
+  department: string;
+}
+
 const categoryIcons: Record<string, any> = {
   Deck: Anchor,
   Engineering: Wrench,
@@ -28,10 +31,10 @@ const categoryIcons: Record<string, any> = {
 };
 
 const categoryColors: Record<string, any> = {
-  Deck: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400', accent: 'bg-blue-500' },
-  Engineering: { bg: 'bg-orange-500/10', border: 'border-orange-500/20', text: 'text-orange-400', accent: 'bg-orange-500' },
-  Interior: { bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-400', accent: 'bg-purple-500' },
-  Culinary: { bg: 'bg-red-500/10', border: 'border-red-500/20', text: 'text-red-400', accent: 'bg-red-500' },
+  Deck: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400' },
+  Engineering: { bg: 'bg-orange-500/10', border: 'border-orange-500/20', text: 'text-orange-400' },
+  Interior: { bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-400' },
+  Culinary: { bg: 'bg-red-500/10', border: 'border-red-500/20', text: 'text-red-400' },
 };
 
 const sourceColors: Record<string, string> = {
@@ -54,29 +57,57 @@ const allSources = [
   'Luxury Yacht Group'
 ];
 
+// Supabase config
+const SUPABASE_URL = 'https://zmiikssbwzkukfqqxjew.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptaWlrc3Nid3prdWtmcXF4amV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3NjM3NjEsImV4cCI6MjA3ODMzOTc2MX0.Um5exonLMHubipMm0pvELDE5_aAoO4ZcoQcLX077VoQ';
+
 export default function SalaryGuide() {
   const [salaryData, setSalaryData] = useState<SalaryRecord[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [selectedPosition, setSelectedPosition] = useState<string>('');
   const [selectedYachtSize, setSelectedYachtSize] = useState<string>('');
   const [viewMode, setViewMode] = useState<'selector' | 'table'>('selector');
 
-  // Fetch data on mount
+  // Fetch data on mount using direct fetch
   useEffect(() => {
     async function loadData() {
-      setLoading(true);
-      const data = await getSalaryData();
-      setSalaryData(data);
-      setLoading(false);
+      try {
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/salary_benchmarks?select=*&order=position`,
+          {
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            }
+          }
+        );
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        setSalaryData(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     }
     loadData();
   }, []);
 
-  // Get unique positions and sizes from data
-  const availablePositions = useMemo(() => getUniquePositions(salaryData), [salaryData]);
-  const availableYachtSizes = useMemo(() => getUniqueYachtSizes(salaryData), [salaryData]);
+  const availablePositions = useMemo(() => 
+    [...new Set(salaryData.map(d => d.position))].sort(), 
+    [salaryData]
+  );
+  
+  const availableYachtSizes = useMemo(() => 
+    [...new Set(salaryData.map(d => d.yacht_size))].sort(), 
+    [salaryData]
+  );
 
-  // Filter data for selected position and size
   const comparisonData = useMemo(() => {
     if (!selectedPosition || !selectedYachtSize) return [];
     return salaryData.filter(d => 
@@ -84,12 +115,20 @@ export default function SalaryGuide() {
     );
   }, [salaryData, selectedPosition, selectedYachtSize]);
 
-  // Calculate average
   const averageSalary = useMemo(() => {
-    return getAverageSalary(comparisonData);
+    if (comparisonData.length === 0) return { min: 0, max: 0, avg: 0, count: 0 };
+    const mins = comparisonData.map(d => d.min_salary);
+    const maxs = comparisonData.map(d => d.max_salary);
+    const minAvg = mins.reduce((a, b) => a + b, 0) / mins.length;
+    const maxAvg = maxs.reduce((a, b) => a + b, 0) / maxs.length;
+    return {
+      min: Math.round(minAvg),
+      max: Math.round(maxAvg),
+      avg: Math.round((minAvg + maxAvg) / 2),
+      count: comparisonData.length,
+    };
   }, [comparisonData]);
 
-  // Get category for selected position
   const selectedCategory = useMemo(() => {
     if (!selectedPosition || comparisonData.length === 0) return 'Deck';
     return comparisonData[0]?.department || 'Deck';
@@ -104,6 +143,23 @@ export default function SalaryGuide() {
         <div className="flex items-center gap-3">
           <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
           <span className="text-lg">Loading salary data...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-[#0d1117] text-white flex items-center justify-center p-4">
+        <div className="max-w-md w-full p-6 bg-red-500/10 border border-red-500/30 rounded-xl">
+          <h2 className="text-xl font-bold text-red-400 mb-2">Error Loading Data</h2>
+          <p className="text-white/80 mb-4">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="w-full px-4 py-2 bg-emerald-500/20 text-emerald-400 rounded-lg hover:bg-emerald-500/30 transition-colors"
+          >
+            Retry
+          </button>
         </div>
       </div>
     );
@@ -132,22 +188,18 @@ export default function SalaryGuide() {
               <button
                 onClick={() => setViewMode('selector')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  viewMode === 'selector' 
-                    ? 'bg-white/10 text-white border border-white/20' 
-                    : 'text-white/60 hover:text-white hover:bg-white/5'
+                  viewMode === 'selector' ? 'bg-white/10 text-white border border-white/20' : 'text-white/60 hover:text-white hover:bg-white/5'
                 }`}
               >
-                Compare Mode
+                Compare
               </button>
               <button
                 onClick={() => setViewMode('table')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  viewMode === 'table' 
-                    ? 'bg-white/10 text-white border border-white/20' 
-                    : 'text-white/60 hover:text-white hover:bg-white/5'
+                  viewMode === 'table' ? 'bg-white/10 text-white border border-white/20' : 'text-white/60 hover:text-white hover:bg-white/5'
                 }`}
               >
-                Full Table
+                Table
               </button>
             </div>
           </div>
@@ -159,217 +211,134 @@ export default function SalaryGuide() {
         {viewMode === 'selector' && (
           <div className="space-y-8">
             {/* Filters */}
-            <div className="glass-card rounded-2xl p-6 border border-white/5 bg-white/[0.03] backdrop-blur-sm">
-              <h2 className="text-lg font-semibold text-white/80 mb-4 flex items-center gap-2">
-                <Scale className="w-5 h-5" />
-                Select Position & Yacht Size to Compare
-              </h2>
+            <div className="glass-card rounded-2xl p-6 border border-white/5 bg-white/[0.03]">
+              <h2 className="text-lg font-semibold text-white/80 mb-4">Select Position & Yacht Size</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm text-white/60 flex items-center gap-2">
-                    <Anchor className="w-4 h-4" />
-                    Position
-                  </label>
-                  <select
-                    value={selectedPosition}
-                    onChange={(e) => setSelectedPosition(e.target.value)}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer hover:bg-black/30 transition-colors"
-                  >
-                    <option value="" className="bg-slate-900">Select position...</option>
-                    {availablePositions.map(pos => (
-                      <option key={pos} value={pos} className="bg-slate-900">{pos}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm text-white/60 flex items-center gap-2">
-                    <Building2 className="w-4 h-4" />
-                    Yacht Size
-                  </label>
-                  <select
-                    value={selectedYachtSize}
-                    onChange={(e) => setSelectedYachtSize(e.target.value)}
-                    className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer hover:bg-black/30 transition-colors"
-                  >
-                    <option value="" className="bg-slate-900">Select yacht size...</option>
-                    {availableYachtSizes.map(size => (
-                      <option key={size} value={size} className="bg-slate-900">{size}</option>
-                    ))}
-                  </select>
-                </div>
+                <select
+                  value={selectedPosition}
+                  onChange={(e) => setSelectedPosition(e.target.value)}
+                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500/50"
+                >
+                  <option value="">Select position...</option>
+                  {availablePositions.map(pos => (
+                    <option key={pos} value={pos}>{pos}</option>
+                  ))}
+                </select>
+                <select
+                  value={selectedYachtSize}
+                  onChange={(e) => setSelectedYachtSize(e.target.value)}
+                  className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500/50"
+                >
+                  <option value="">Select yacht size...</option>
+                  {availableYachtSizes.map(size => (
+                    <option key={size} value={size}>{size}</option>
+                  ))}
+                </select>
               </div>
             </div>
 
             {/* Results */}
             {selectedPosition && selectedYachtSize && averageSalary.count > 0 && (
-              <div className="space-y-6">
+              <>
                 {/* Average Card */}
-                <div className={`glass-card rounded-2xl p-6 border ${colors.border} ${colors.bg} backdrop-blur-sm`}>
+                <div className={`glass-card rounded-2xl p-6 border ${colors.border} ${colors.bg}`}>
                   <div className="flex items-start gap-4">
                     <div className={`p-3 rounded-xl ${colors.bg} border ${colors.border}`}>
                       <CategoryIcon className={`w-6 h-6 ${colors.text}`} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white">{selectedPosition}</h3>
+                      <h3 className="text-xl font-bold">{selectedPosition}</h3>
                       <p className="text-white/60">{selectedYachtSize} • {comparisonData.length} sources</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-3xl font-bold text-white">€{averageSalary.avg.toLocaleString()}</p>
+                      <p className="text-3xl font-bold">€{averageSalary.avg.toLocaleString()}</p>
                       <p className="text-white/60 text-sm">Average/month</p>
                     </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                  <div className="mt-4 pt-4 border-t border-white/10 flex justify-between">
                     <span className="text-white/60">Range:</span>
-                    <span className="text-lg font-semibold text-white">
-                      €{averageSalary.min.toLocaleString()} - €{averageSalary.max.toLocaleString()}
-                    </span>
+                    <span className="text-lg font-semibold">€{averageSalary.min.toLocaleString()} - €{averageSalary.max.toLocaleString()}</span>
                   </div>
                 </div>
 
-                {/* Source Comparison */}
-                <h3 className="text-lg font-semibold text-white/80 flex items-center gap-2">
-                  <Scale className="w-5 h-5" />
-                  Source Comparison — All Salaries
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {/* Source Cards */}
+                <h3 className="text-lg font-semibold text-white/80">Source Comparison</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {comparisonData.map((item, idx) => (
-                    <div 
-                      key={idx} 
-                      className={`glass-card rounded-xl p-6 border-2 backdrop-blur-sm ${sourceColors[item.source] || 'border-white/10 bg-white/[0.03]'}`}
-                    >
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-sm font-bold text-white">{item.source}</span>
-                        <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-white/60">
-                          {item.currency}
-                        </span>
+                    <div key={idx} className={`glass-card rounded-xl p-5 border-2 ${sourceColors[item.source] || 'border-white/10'}`}>
+                      <div className="flex justify-between mb-3">
+                        <span className="text-sm font-bold">{item.source}</span>
+                        <span className="text-xs px-2 py-1 rounded-full bg-white/10">{item.currency}</span>
                       </div>
-                      
-                      <div className="text-center py-4 border-y border-white/10 my-4">
-                        <p className="text-xs text-white/50 uppercase tracking-wide mb-1">Average</p>
-                        <p className="text-3xl font-bold text-emerald-400">
+                      <div className="text-center py-3 border-y border-white/10 my-3">
+                        <p className="text-xs text-white/50 uppercase">Average</p>
+                        <p className="text-2xl font-bold text-emerald-400">
                           €{Math.round((item.min_salary + item.max_salary) / 2).toLocaleString()}
                         </p>
-                        <p className="text-sm text-white/40 mt-1">per month</p>
                       </div>
-                      
-                      <div className="space-y-3 pt-2">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm text-white/50">Min</span>
-                          <span className="text-lg font-semibold text-white">€{item.min_salary.toLocaleString()}</span>
-                        </div>
-                        <div className="w-full bg-white/10 rounded-full h-2">
-                          <div className="bg-emerald-500 h-2 rounded-full" style={{width: '100%'}}></div>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm text-white/50">Max</span>
-                          <span className="text-lg font-semibold text-white">€{item.max_salary.toLocaleString()}</span>
-                        </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-white/50">€{item.min_salary.toLocaleString()}</span>
+                        <span>€{item.max_salary.toLocaleString()}</span>
                       </div>
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
-
-            {/* Empty State */}
-            {(!selectedPosition || !selectedYachtSize) && (
-              <div className="glass-card rounded-2xl p-12 text-center border border-white/5 bg-white/[0.02]">
-                <DollarSign className="w-16 h-16 text-white/10 mx-auto mb-4" />
-                <p className="text-white/60 text-lg">Select a position and yacht size to compare salaries</p>
-                <p className="text-white/40 text-sm mt-2">
-                  {salaryData.length} records from {new Set(salaryData.map(d => d.source)).size} sources
-                </p>
-              </div>
+              </>
             )}
           </div>
         )}
 
         {/* Table Mode */}
         {viewMode === 'table' && (
-          <div className="glass-card rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-sm overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-white/10 bg-white/[0.05]">
-                    <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Position</th>
-                    <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Yacht Size</th>
-                    <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Min Salary</th>
-                    <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Max Salary</th>
-                    <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Source</th>
+          <div className="glass-card rounded-2xl border border-white/5 overflow-hidden">
+            <table className="w-full">
+              <thead className="border-b border-white/10 bg-white/[0.05]">
+                <tr>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Position</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Size</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Min</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Max</th>
+                  <th className="text-left px-6 py-4 text-sm font-medium text-white/60">Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                {salaryData.map((item, idx) => (
+                  <tr key={idx} className="border-b border-white/5 hover:bg-white/[0.05]">
+                    <td className="px-6 py-4 font-medium">{item.position}</td>
+                    <td className="px-6 py-4 text-white/70">{item.yacht_size}</td>
+                    <td className="px-6 py-4 text-emerald-400 font-semibold">€{item.min_salary.toLocaleString()}</td>
+                    <td className="px-6 py-4 text-emerald-400 font-semibold">€{item.max_salary.toLocaleString()}</td>
+                    <td className="px-6 py-4">
+                      <span className={`text-xs px-2 py-1 rounded-full border ${sourceColors[item.source] || 'border-white/10'}`}>
+                        {item.source}
+                      </span>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {salaryData.map((item, idx) => (
-                    <tr key={idx} className="border-b border-white/5 hover:bg-white/[0.05] transition-colors">
-                      <td className="px-6 py-4 text-white font-medium">{item.position}</td>
-                      <td className="px-6 py-4 text-white/70">{item.yacht_size}</td>
-                      <td className="px-6 py-4 text-emerald-400 font-semibold">€{item.min_salary.toLocaleString()}</td>
-                      <td className="px-6 py-4 text-emerald-400 font-semibold">€{item.max_salary.toLocaleString()}</td>
-                      <td className="px-6 py-4">
-                        <span className={`text-xs px-2 py-1 rounded-full border ${sourceColors[item.source] || 'border-white/10 bg-white/10 text-white/60'}`}>
-                          {item.source}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
             <div className="p-4 text-center text-white/40 text-sm border-t border-white/5">
-              Showing all {salaryData.length} salary entries from {new Set(salaryData.map(d => d.source)).size} sources
+              {salaryData.length} records from {new Set(salaryData.map(d => d.source)).size} sources
             </div>
           </div>
         )}
 
-        {/* Footer - Dynamic Sources */}
-        <div className="mt-8 md:mt-12 glass-card rounded-2xl p-4 md:p-6 border border-white/5 bg-white/[0.02] backdrop-blur-sm">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-            <h3 className="text-base md:text-lg font-semibold text-white">
-              {selectedPosition && selectedYachtSize 
-                ? `Active Sources for ${selectedPosition} — ${selectedYachtSize}`
-                : 'All Data Sources'
-              }
-            </h3>
-            <span className="text-sm text-white/60">
-              {selectedPosition && selectedYachtSize 
-                ? `${comparisonData.length} of ${allSources.length} sources have data`
-                : `${new Set(salaryData.map(d => d.source)).size} sources compiled`
-              }
-            </span>
+        {/* Footer */}
+        <div className="mt-12 glass-card rounded-2xl p-6 border border-white/5">
+          <div className="flex flex-col md:flex-row justify-between gap-4 mb-4">
+            <h3 className="text-lg font-semibold">Data Sources</h3>
+            <span className="text-white/60">{new Set(salaryData.map(d => d.source)).size} sources</span>
           </div>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
             {allSources.map(source => {
-              const isActive = selectedPosition && selectedYachtSize 
-                ? comparisonData.some(d => d.source === source)
-                : salaryData.some(d => d.source === source);
-              
+              const hasData = salaryData.some(d => d.source === source);
               return (
-                <div 
-                  key={source} 
-                  className={`px-2 md:px-3 py-2 md:py-3 rounded-lg text-[10px] md:text-xs text-center border backdrop-blur-sm transition-all ${
-                    isActive
-                      ? sourceColors[source] || 'border-white/10 bg-white/5 text-white'
-                      : 'border-white/5 bg-white/[0.02] text-white/30 opacity-50'
-                  }`}
-                >
-                  <div className="font-medium truncate">{source}</div>
-                  {selectedPosition && selectedYachtSize && (
-                    <div className="text-[8px] md:text-[10px] mt-1 opacity-70">
-                      {isActive ? '✓ Active' : '— No data'}
-                    </div>
-                  )}
+                <div key={source} className={`px-3 py-2 rounded-lg text-xs text-center border ${hasData ? sourceColors[source] : 'border-white/5 text-white/30'}`}>
+                  {source}
                 </div>
               );
             })}
           </div>
-          
-          {selectedPosition && selectedYachtSize && comparisonData.length < allSources.length && (
-            <p className="text-xs text-white/40 mt-4 text-center">
-              {allSources.length - comparisonData.length} sources don&apos;t have data for this specific position/size combination
-            </p>
-          )}
         </div>
       </div>
     </div>
