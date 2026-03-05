@@ -1,10 +1,14 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { salaryData, yachtSizes, getUniquePositions, type SalaryRange } from '@/lib/salary-data';
-
-// Only show positions that have data
-const availablePositions = getUniquePositions();
+import { useState, useEffect, useMemo } from 'react';
+import { 
+  getSalaryData, 
+  getSalaryForPositionAndSize,
+  getUniquePositions,
+  getUniqueYachtSizes,
+  getAverageSalary,
+  type SalaryRecord 
+} from '@/lib/supabase';
 import { 
   Anchor, 
   Wrench, 
@@ -13,17 +17,17 @@ import {
   DollarSign,
   Building2,
   Scale,
-  ArrowRight
+  Loader2
 } from 'lucide-react';
 
-const categoryIcons = {
+const categoryIcons: Record<string, any> = {
   Deck: Anchor,
   Engineering: Wrench,
   Interior: Sparkles,
   Culinary: ChefHat,
 };
 
-const categoryColors = {
+const categoryColors: Record<string, any> = {
   Deck: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400', accent: 'bg-blue-500' },
   Engineering: { bg: 'bg-orange-500/10', border: 'border-orange-500/20', text: 'text-orange-400', accent: 'bg-orange-500' },
   Interior: { bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-400', accent: 'bg-purple-500' },
@@ -40,41 +44,70 @@ const sourceColors: Record<string, string> = {
   'Luxury Yacht Group': 'border-rose-500/30 bg-rose-500/10',
 };
 
+const allSources = [
+  'Flying Fish Online', 
+  'Lighthouse Careers', 
+  'YPI CREW', 
+  'Morgan & Mallet', 
+  'Dockwalk', 
+  'Quay Group', 
+  'Luxury Yacht Group'
+];
+
 export default function SalaryGuide() {
+  const [salaryData, setSalaryData] = useState<SalaryRecord[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedPosition, setSelectedPosition] = useState<string>('');
   const [selectedYachtSize, setSelectedYachtSize] = useState<string>('');
   const [viewMode, setViewMode] = useState<'selector' | 'table'>('selector');
 
-  // Get comparison data when both filters are selected
+  // Fetch data on mount
+  useEffect(() => {
+    async function loadData() {
+      setLoading(true);
+      const data = await getSalaryData();
+      setSalaryData(data);
+      setLoading(false);
+    }
+    loadData();
+  }, []);
+
+  // Get unique positions and sizes from data
+  const availablePositions = useMemo(() => getUniquePositions(salaryData), [salaryData]);
+  const availableYachtSizes = useMemo(() => getUniqueYachtSizes(salaryData), [salaryData]);
+
+  // Filter data for selected position and size
   const comparisonData = useMemo(() => {
     if (!selectedPosition || !selectedYachtSize) return [];
     return salaryData.filter(d => 
-      d.position === selectedPosition && d.yachtSize === selectedYachtSize
+      d.position === selectedPosition && d.yacht_size === selectedYachtSize
     );
-  }, [selectedPosition, selectedYachtSize]);
+  }, [salaryData, selectedPosition, selectedYachtSize]);
 
-  // Calculate average from all sources
+  // Calculate average
   const averageSalary = useMemo(() => {
-    if (comparisonData.length === 0) return null;
-    const allMins = comparisonData.map(d => d.minSalary);
-    const allMaxs = comparisonData.map(d => d.maxSalary);
-    return {
-      min: Math.round(allMins.reduce((a, b) => a + b, 0) / allMins.length),
-      max: Math.round(allMaxs.reduce((a, b) => a + b, 0) / allMaxs.length),
-      avg: Math.round((allMins.reduce((a, b) => a + b, 0) + allMaxs.reduce((a, b) => a + b, 0)) / (allMins.length + allMaxs.length)),
-      count: comparisonData.length,
-    };
+    return getAverageSalary(comparisonData);
   }, [comparisonData]);
 
   // Get category for selected position
   const selectedCategory = useMemo(() => {
-    if (!selectedPosition) return null;
-    const match = salaryData.find(d => d.position === selectedPosition);
-    return match?.category || 'Deck';
-  }, [selectedPosition]);
+    if (!selectedPosition || comparisonData.length === 0) return 'Deck';
+    return comparisonData[0]?.department || 'Deck';
+  }, [selectedPosition, comparisonData]);
 
-  const CategoryIcon = selectedCategory ? categoryIcons[selectedCategory] : DollarSign;
-  const colors = selectedCategory ? categoryColors[selectedCategory] : categoryColors.Deck;
+  const CategoryIcon = categoryIcons[selectedCategory] || DollarSign;
+  const colors = categoryColors[selectedCategory] || categoryColors.Deck;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0d1117] text-white flex items-center justify-center">
+        <div className="flex items-center gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
+          <span className="text-lg">Loading salary data...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0d1117] text-white">
@@ -91,7 +124,7 @@ export default function SalaryGuide() {
                   Yacht Crew Salary Guide 2026
                 </h1>
                 <p className="text-white/50 text-sm mt-1">
-                  Compare salaries across {new Set(salaryData.map(d => d.source)).size} industry sources
+                  {salaryData.length} salary records from {new Set(salaryData.map(d => d.source)).size} sources
                 </p>
               </div>
             </div>
@@ -160,7 +193,7 @@ export default function SalaryGuide() {
                     className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 appearance-none cursor-pointer hover:bg-black/30 transition-colors"
                   >
                     <option value="" className="bg-slate-900">Select yacht size...</option>
-                    {yachtSizes.map(size => (
+                    {availableYachtSizes.map(size => (
                       <option key={size} value={size} className="bg-slate-900">{size}</option>
                     ))}
                   </select>
@@ -169,7 +202,7 @@ export default function SalaryGuide() {
             </div>
 
             {/* Results */}
-            {selectedPosition && selectedYachtSize && averageSalary && (
+            {selectedPosition && selectedYachtSize && averageSalary.count > 0 && (
               <div className="space-y-6">
                 {/* Average Card */}
                 <div className={`glass-card rounded-2xl p-6 border ${colors.border} ${colors.bg} backdrop-blur-sm`}>
@@ -212,27 +245,25 @@ export default function SalaryGuide() {
                         </span>
                       </div>
                       
-                      {/* Big Salary Display */}
                       <div className="text-center py-4 border-y border-white/10 my-4">
                         <p className="text-xs text-white/50 uppercase tracking-wide mb-1">Average</p>
                         <p className="text-3xl font-bold text-emerald-400">
-                          €{Math.round((item.minSalary + item.maxSalary) / 2).toLocaleString()}
+                          €{Math.round((item.min_salary + item.max_salary) / 2).toLocaleString()}
                         </p>
                         <p className="text-sm text-white/40 mt-1">per month</p>
                       </div>
                       
-                      {/* Range */}
                       <div className="space-y-3 pt-2">
                         <div className="flex justify-between items-center">
                           <span className="text-sm text-white/50">Min</span>
-                          <span className="text-lg font-semibold text-white">€{item.minSalary.toLocaleString()}</span>
+                          <span className="text-lg font-semibold text-white">€{item.min_salary.toLocaleString()}</span>
                         </div>
                         <div className="w-full bg-white/10 rounded-full h-2">
                           <div className="bg-emerald-500 h-2 rounded-full" style={{width: '100%'}}></div>
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-sm text-white/50">Max</span>
-                          <span className="text-lg font-semibold text-white">€{item.maxSalary.toLocaleString()}</span>
+                          <span className="text-lg font-semibold text-white">€{item.max_salary.toLocaleString()}</span>
                         </div>
                       </div>
                     </div>
@@ -246,7 +277,9 @@ export default function SalaryGuide() {
               <div className="glass-card rounded-2xl p-12 text-center border border-white/5 bg-white/[0.02]">
                 <DollarSign className="w-16 h-16 text-white/10 mx-auto mb-4" />
                 <p className="text-white/60 text-lg">Select a position and yacht size to compare salaries</p>
-                <p className="text-white/40 text-sm mt-2">Data from {new Set(salaryData.map(d => d.source)).size} industry sources</p>
+                <p className="text-white/40 text-sm mt-2">
+                  {salaryData.length} records from {new Set(salaryData.map(d => d.source)).size} sources
+                </p>
               </div>
             )}
           </div>
@@ -270,9 +303,9 @@ export default function SalaryGuide() {
                   {salaryData.map((item, idx) => (
                     <tr key={idx} className="border-b border-white/5 hover:bg-white/[0.05] transition-colors">
                       <td className="px-6 py-4 text-white font-medium">{item.position}</td>
-                      <td className="px-6 py-4 text-white/70">{item.yachtSize}</td>
-                      <td className="px-6 py-4 text-emerald-400 font-semibold">€{item.minSalary.toLocaleString()}</td>
-                      <td className="px-6 py-4 text-emerald-400 font-semibold">€{item.maxSalary.toLocaleString()}</td>
+                      <td className="px-6 py-4 text-white/70">{item.yacht_size}</td>
+                      <td className="px-6 py-4 text-emerald-400 font-semibold">€{item.min_salary.toLocaleString()}</td>
+                      <td className="px-6 py-4 text-emerald-400 font-semibold">€{item.max_salary.toLocaleString()}</td>
                       <td className="px-6 py-4">
                         <span className={`text-xs px-2 py-1 rounded-full border ${sourceColors[item.source] || 'border-white/10 bg-white/10 text-white/60'}`}>
                           {item.source}
@@ -300,24 +333,23 @@ export default function SalaryGuide() {
             </h3>
             <span className="text-sm text-white/60">
               {selectedPosition && selectedYachtSize 
-                ? `${comparisonData.length} of 7 sources have data`
+                ? `${comparisonData.length} of ${allSources.length} sources have data`
                 : `${new Set(salaryData.map(d => d.source)).size} sources compiled`
               }
             </span>
           </div>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-3">
-            {['Flying Fish Online', 'Lighthouse Careers', 'YPI CREW', 'Morgan & Mallet', 'Dockwalk', 'Quay Group', 'Luxury Yacht Group'].map(source => {
+            {allSources.map(source => {
               const isActive = selectedPosition && selectedYachtSize 
                 ? comparisonData.some(d => d.source === source)
-                : true;
-              const hasDataGlobally = salaryData.some(d => d.source === source);
+                : salaryData.some(d => d.source === source);
               
               return (
                 <div 
                   key={source} 
                   className={`px-2 md:px-3 py-2 md:py-3 rounded-lg text-[10px] md:text-xs text-center border backdrop-blur-sm transition-all ${
-                    isActive && hasDataGlobally
+                    isActive
                       ? sourceColors[source] || 'border-white/10 bg-white/5 text-white'
                       : 'border-white/5 bg-white/[0.02] text-white/30 opacity-50'
                   }`}
@@ -333,9 +365,9 @@ export default function SalaryGuide() {
             })}
           </div>
           
-          {selectedPosition && selectedYachtSize && comparisonData.length < 7 && (
+          {selectedPosition && selectedYachtSize && comparisonData.length < allSources.length && (
             <p className="text-xs text-white/40 mt-4 text-center">
-              {7 - comparisonData.length} sources don&apos;t have data for this specific position/size combination
+              {allSources.length - comparisonData.length} sources don&apos;t have data for this specific position/size combination
             </p>
           )}
         </div>

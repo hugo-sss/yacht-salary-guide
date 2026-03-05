@@ -1,0 +1,612 @@
+[
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 4000,
+    "maxSalary": 7000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 7000,
+    "maxSalary": 14000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 14000,
+    "maxSalary": 16000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 16000,
+    "maxSalary": 25000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "First Officer",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 3000,
+    "maxSalary": 5000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "First Officer",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 4300,
+    "maxSalary": 5700,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "First Officer",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 6000,
+    "maxSalary": 8000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "First Officer",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 7000,
+    "maxSalary": 10000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 3200,
+    "maxSalary": 4500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 4000,
+    "maxSalary": 5000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 5000,
+    "maxSalary": 8000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 2800,
+    "maxSalary": 3500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 2800,
+    "maxSalary": 4000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 3500,
+    "maxSalary": 4500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 4500,
+    "maxSalary": 6000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Junior Deckhand",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 2000,
+    "maxSalary": 3000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Junior Deckhand",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 2000,
+    "maxSalary": 3000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "30-40m",
+    "minSalary": 3000,
+    "maxSalary": 4500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 4000,
+    "maxSalary": 6000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 6000,
+    "maxSalary": 7000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 7000,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "30-40m",
+    "minSalary": 2800,
+    "maxSalary": 3000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 2800,
+    "maxSalary": 3500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 3500,
+    "maxSalary": 4500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 4500,
+    "maxSalary": 6000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Junior Stewardess",
+    "category": "Interior",
+    "yachtSize": "30-40m",
+    "minSalary": 2000,
+    "maxSalary": 3000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Junior Stewardess",
+    "category": "Interior",
+    "yachtSize": "40-50m",
+    "minSalary": 3000,
+    "maxSalary": 3500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "30-40m",
+    "minSalary": 3000,
+    "maxSalary": 4500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "50-60m",
+    "minSalary": 4000,
+    "maxSalary": 7000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "60-80m",
+    "minSalary": 6000,
+    "maxSalary": 7500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "80-100m",
+    "minSalary": 7500,
+    "maxSalary": 14000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Flying Fish Online"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 7500,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 9000,
+    "maxSalary": 14000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 12000,
+    "maxSalary": 18000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 14000,
+    "maxSalary": 20000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 16000,
+    "maxSalary": 24000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 20000,
+    "maxSalary": 30000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 4200,
+    "maxSalary": 6500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 5000,
+    "maxSalary": 7500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 6000,
+    "maxSalary": 9000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 7000,
+    "maxSalary": 10000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 8000,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 10000,
+    "maxSalary": 14000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "30-40m",
+    "minSalary": 5500,
+    "maxSalary": 8000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "40-50m",
+    "minSalary": 6000,
+    "maxSalary": 9500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-70m",
+    "minSalary": 7000,
+    "maxSalary": 11000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "70-80m",
+    "minSalary": 8000,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 9000,
+    "maxSalary": 14000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 10000,
+    "maxSalary": 16000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "30-40m",
+    "minSalary": 3800,
+    "maxSalary": 5500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "40-50m",
+    "minSalary": 4500,
+    "maxSalary": 6500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-70m",
+    "minSalary": 5500,
+    "maxSalary": 8000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "70-80m",
+    "minSalary": 6500,
+    "maxSalary": 9500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 7000,
+    "maxSalary": 10500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "100m+",
+    "minSalary": 8000,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "30-40m",
+    "minSalary": 4500,
+    "maxSalary": 6500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "40-50m",
+    "minSalary": 6000,
+    "maxSalary": 7500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "50-70m",
+    "minSalary": 7500,
+    "maxSalary": 10000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "70-80m",
+    "minSalary": 8500,
+    "maxSalary": 11500,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "80-100m",
+    "minSalary": 9000,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "100m+",
+    "minSalary": 10000,
+    "maxSalary": 14000,
+    "currency": "EUR",
+    "period": "month",
+    "source": "Lighthouse Careers"
+  }
+]
