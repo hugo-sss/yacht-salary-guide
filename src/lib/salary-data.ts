@@ -11,6 +11,7 @@ export interface SalaryRange {
   rotation?: string;
 }
 
+// Standardized yacht sizes that match the data
 export const yachtSizes = [
   'Below 30m',
   '30-40m',
@@ -20,6 +21,22 @@ export const yachtSizes = [
   '80-100m',
   '100m+',
 ];
+
+// Mapping from data formats to standard sizes
+const sizeMapping: Record<string, string> = {
+  '20-40m': '30-40m',
+  '40-60m': '50-60m',
+  '60m+': '60-80m',
+  '80m+': '80-100m',
+  'Below 30m': 'Below 30m',
+  '30-40m': '30-40m',
+  '40-50m': '40-50m',
+  '50-60m': '50-60m',
+  '60-80m': '60-80m',
+  '70-80m': '60-80m',
+  '80-100m': '80-100m',
+  '100m+': '100m+',
+};
 
 export const positions = [
   'Captain',
@@ -50,47 +67,47 @@ export const positions = [
 
 export const salaryData: SalaryRange[] = [
   // Flying Fish Data (EUR/month)
-  { position: 'Captain', category: 'Deck', yachtSize: '20-40m', minSalary: 4000, maxSalary: 7000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Captain', category: 'Deck', yachtSize: '40-60m', minSalary: 7000, maxSalary: 14000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Captain', category: 'Deck', yachtSize: '30-40m', minSalary: 4000, maxSalary: 7000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Captain', category: 'Deck', yachtSize: '50-60m', minSalary: 7000, maxSalary: 14000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   { position: 'Captain', category: 'Deck', yachtSize: '60-80m', minSalary: 14000, maxSalary: 16000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Captain', category: 'Deck', yachtSize: '80m+', minSalary: 16000, maxSalary: 25000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Captain', category: 'Deck', yachtSize: '80-100m', minSalary: 16000, maxSalary: 25000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   
-  { position: 'First Officer', category: 'Deck', yachtSize: '20-40m', minSalary: 3000, maxSalary: 5000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'First Officer', category: 'Deck', yachtSize: '40-60m', minSalary: 4300, maxSalary: 5700, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'First Officer', category: 'Deck', yachtSize: '30-40m', minSalary: 3000, maxSalary: 5000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'First Officer', category: 'Deck', yachtSize: '50-60m', minSalary: 4300, maxSalary: 5700, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   { position: 'First Officer', category: 'Deck', yachtSize: '60-80m', minSalary: 6000, maxSalary: 8000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'First Officer', category: 'Deck', yachtSize: '80m+', minSalary: 7000, maxSalary: 10000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'First Officer', category: 'Deck', yachtSize: '80-100m', minSalary: 7000, maxSalary: 10000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   
-  { position: 'Bosun', category: 'Deck', yachtSize: '20-40m', minSalary: 3200, maxSalary: 4500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Bosun', category: 'Deck', yachtSize: '40-60m', minSalary: 4000, maxSalary: 5000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Bosun', category: 'Deck', yachtSize: '60m+', minSalary: 5000, maxSalary: 8000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Bosun', category: 'Deck', yachtSize: '30-40m', minSalary: 3200, maxSalary: 4500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Bosun', category: 'Deck', yachtSize: '50-60m', minSalary: 4000, maxSalary: 5000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Bosun', category: 'Deck', yachtSize: '60-80m', minSalary: 5000, maxSalary: 8000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   
-  { position: 'Deckhand', category: 'Deck', yachtSize: '20-40m', minSalary: 2800, maxSalary: 3500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Deckhand', category: 'Deck', yachtSize: '40-60m', minSalary: 2800, maxSalary: 4000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Deckhand', category: 'Deck', yachtSize: '30-40m', minSalary: 2800, maxSalary: 3500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Deckhand', category: 'Deck', yachtSize: '50-60m', minSalary: 2800, maxSalary: 4000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   { position: 'Deckhand', category: 'Deck', yachtSize: '60-80m', minSalary: 3500, maxSalary: 4500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Deckhand', category: 'Deck', yachtSize: '80m+', minSalary: 4500, maxSalary: 6000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Deckhand', category: 'Deck', yachtSize: '80-100m', minSalary: 4500, maxSalary: 6000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   
-  { position: 'Junior Deckhand', category: 'Deck', yachtSize: '20-40m', minSalary: 2000, maxSalary: 3000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Junior Deckhand', category: 'Deck', yachtSize: '40m+', minSalary: 2000, maxSalary: 3000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Junior Deckhand', category: 'Deck', yachtSize: '30-40m', minSalary: 2000, maxSalary: 3000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Junior Deckhand', category: 'Deck', yachtSize: '40-50m', minSalary: 2000, maxSalary: 3000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   
   // Interior
-  { position: 'Chief Stewardess', category: 'Interior', yachtSize: '20-40m', minSalary: 3000, maxSalary: 4500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Chief Stewardess', category: 'Interior', yachtSize: '40-60m', minSalary: 4000, maxSalary: 6000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Chief Stewardess', category: 'Interior', yachtSize: '30-40m', minSalary: 3000, maxSalary: 4500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Chief Stewardess', category: 'Interior', yachtSize: '50-60m', minSalary: 4000, maxSalary: 6000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   { position: 'Chief Stewardess', category: 'Interior', yachtSize: '60-80m', minSalary: 6000, maxSalary: 7000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Chief Stewardess', category: 'Interior', yachtSize: '80m+', minSalary: 7000, maxSalary: 12000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Chief Stewardess', category: 'Interior', yachtSize: '80-100m', minSalary: 7000, maxSalary: 12000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   
-  { position: 'Stewardess', category: 'Interior', yachtSize: '20-40m', minSalary: 2800, maxSalary: 3000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Stewardess', category: 'Interior', yachtSize: '40-60m', minSalary: 2800, maxSalary: 3500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Stewardess', category: 'Interior', yachtSize: '30-40m', minSalary: 2800, maxSalary: 3000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Stewardess', category: 'Interior', yachtSize: '50-60m', minSalary: 2800, maxSalary: 3500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   { position: 'Stewardess', category: 'Interior', yachtSize: '60-80m', minSalary: 3500, maxSalary: 4500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Stewardess', category: 'Interior', yachtSize: '80m+', minSalary: 4500, maxSalary: 6000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Stewardess', category: 'Interior', yachtSize: '80-100m', minSalary: 4500, maxSalary: 6000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   
-  { position: 'Junior Stewardess', category: 'Interior', yachtSize: '20-40m', minSalary: 2000, maxSalary: 3000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Junior Stewardess', category: 'Interior', yachtSize: '40m+', minSalary: 3000, maxSalary: 3500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Junior Stewardess', category: 'Interior', yachtSize: '30-40m', minSalary: 2000, maxSalary: 3000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Junior Stewardess', category: 'Interior', yachtSize: '40-50m', minSalary: 3000, maxSalary: 3500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   
   // Culinary
-  { position: 'Head Chef', category: 'Culinary', yachtSize: '20-40m', minSalary: 3000, maxSalary: 4500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Head Chef', category: 'Culinary', yachtSize: '40-60m', minSalary: 4000, maxSalary: 7000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Head Chef', category: 'Culinary', yachtSize: '30-40m', minSalary: 3000, maxSalary: 4500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Head Chef', category: 'Culinary', yachtSize: '50-60m', minSalary: 4000, maxSalary: 7000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   { position: 'Head Chef', category: 'Culinary', yachtSize: '60-80m', minSalary: 6000, maxSalary: 7500, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
-  { position: 'Head Chef', category: 'Culinary', yachtSize: '80m+', minSalary: 7500, maxSalary: 14000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
+  { position: 'Head Chef', category: 'Culinary', yachtSize: '80-100m', minSalary: 7500, maxSalary: 14000, currency: 'EUR', period: 'month', source: 'Flying Fish Online' },
   
   // Lighthouse Careers Data
   { position: 'Captain', category: 'Deck', yachtSize: '30-40m', minSalary: 7500, maxSalary: 12000, currency: 'EUR', period: 'month', source: 'Lighthouse Careers' },
