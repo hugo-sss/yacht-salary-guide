@@ -45,6 +45,8 @@ const sourceColors: Record<string, string> = {
   'Dockwalk': 'border-cyan-500/30 bg-cyan-500/10',
   'Quay Group': 'border-pink-500/30 bg-pink-500/10',
   'Luxury Yacht Group': 'border-rose-500/30 bg-rose-500/10',
+  'Camper & Nicholsons (2024)': 'border-teal-500/30 bg-teal-500/10',
+  'McGregor Financial Services (2025-26)': 'border-indigo-500/30 bg-indigo-500/10',
 };
 
 const allSources = [
@@ -54,7 +56,9 @@ const allSources = [
   'Morgan & Mallet', 
   'Dockwalk', 
   'Quay Group', 
-  'Luxury Yacht Group'
+  'Luxury Yacht Group',
+  'Camper & Nicholsons (2024)',
+  'McGregor Financial Services (2025-26)'
 ];
 
 // Supabase config
