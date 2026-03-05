@@ -107,13 +107,43 @@ export default function SalaryGuide() {
     salaryData.map(d => ({ ...d, position: normalizePosition(d.position) }))
   ), [salaryData]);
 
+  const positionOrder = [
+    'Captain',
+    'Chief Engineer',
+    'First Officer',
+    'Bosun',
+    'Deckhand',
+    'Junior Deckhand',
+    'Chief Stewardess',
+    'Stewardess',
+    'Junior Stewardess',
+    'Head Chef'
+  ];
+
+  const sizeOrder = [
+    '30-40m',
+    '40-50m',
+    '50-60m',
+    '60-80m',
+    '70-80m',
+    '80-100m',
+    '100m+'
+  ];
+
+  const orderByList = (value: string, list: string[]) => {
+    const idx = list.indexOf(value);
+    return idx === -1 ? Number.MAX_SAFE_INTEGER : idx;
+  };
+
   const availablePositions = useMemo(() => 
-    [...new Set(normalizedData.map(d => d.position))].sort(), 
+    [...new Set(normalizedData.map(d => d.position))]
+      .sort((a, b) => orderByList(a, positionOrder) - orderByList(b, positionOrder)), 
     [normalizedData]
   );
   
   const availableYachtSizes = useMemo(() => 
-    [...new Set(normalizedData.map(d => d.yacht_size))].sort(), 
+    [...new Set(normalizedData.map(d => d.yacht_size))]
+      .sort((a, b) => orderByList(a, sizeOrder) - orderByList(b, sizeOrder)), 
     [normalizedData]
   );
 
@@ -123,7 +153,7 @@ export default function SalaryGuide() {
       normalizedData
         .filter(d => d.position === selectedPosition)
         .map(d => d.yacht_size)
-    )].sort();
+    )].sort((a, b) => orderByList(a, sizeOrder) - orderByList(b, sizeOrder));
   }, [normalizedData, selectedPosition, availableYachtSizes]);
 
   const comparisonData = useMemo(() => {
