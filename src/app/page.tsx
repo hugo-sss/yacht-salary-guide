@@ -47,6 +47,7 @@ const sourceColors: Record<string, string> = {
   'Luxury Yacht Group': 'border-rose-500/30 bg-rose-500/10',
   'Camper & Nicholsons (2024)': 'border-teal-500/30 bg-teal-500/10',
   'McGregor Financial Services (2025-26)': 'border-indigo-500/30 bg-indigo-500/10',
+  'LuxYachts Salary Guidelines (2021)': 'border-lime-500/30 bg-lime-500/10',
 };
 
 const allSources = [
@@ -58,7 +59,8 @@ const allSources = [
   'Quay Group', 
   'Luxury Yacht Group',
   'Camper & Nicholsons (2024)',
-  'McGregor Financial Services (2025-26)'
+  'McGregor Financial Services (2025-26)',
+  'LuxYachts Salary Guidelines (2021)'
 ];
 
 // Supabase config

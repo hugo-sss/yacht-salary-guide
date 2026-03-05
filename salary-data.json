@@ -1748,5 +1748,875 @@
     "currency": "USD",
     "period": "month",
     "source": "McGregor Financial Services (2025-26)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 12000,
+    "maxSalary": 25000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 5500,
+    "maxSalary": 16000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 5500,
+    "maxSalary": 16000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 4000,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "First Officer",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 6000,
+    "maxSalary": 12000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "First Officer",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 6000,
+    "maxSalary": 12000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "First Officer",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 6000,
+    "maxSalary": 12000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 5000,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 5000,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 4750,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 4750,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 4750,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Mate",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 3000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Mate",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 3000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 3000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 3000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 3000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 3000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 2500,
+    "maxSalary": 4500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 2000,
+    "maxSalary": 3250,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 2000,
+    "maxSalary": 3250,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Junior Deckhand",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 1750,
+    "maxSalary": 2750,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 7000,
+    "maxSalary": 20000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 7000,
+    "maxSalary": 20000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 7000,
+    "maxSalary": 20000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "40-50m",
+    "minSalary": 5000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 5000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 5500,
+    "maxSalary": 12000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 5500,
+    "maxSalary": 12000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 5000,
+    "maxSalary": 7750,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 5000,
+    "maxSalary": 7750,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 3750,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 3750,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 3750,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 3750,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 2250,
+    "maxSalary": 4500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 2250,
+    "maxSalary": 4500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 2250,
+    "maxSalary": 4500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 2250,
+    "maxSalary": 4500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Third Engineer",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "30-40m",
+    "minSalary": 3250,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "40-50m",
+    "minSalary": 3250,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 3250,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 3250,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 3250,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 3250,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 5750,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 5750,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "100m+",
+    "minSalary": 5750,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 6000,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 6000,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 6000,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "100m+",
+    "minSalary": 6000,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "40-50m",
+    "minSalary": 4500,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Chief Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 4500,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 3500,
+    "maxSalary": 6500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Stewardess",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 3500,
+    "maxSalary": 6500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Stewardess",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 3500,
+    "maxSalary": 6500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Second Stewardess",
+    "category": "Interior",
+    "yachtSize": "100m+",
+    "minSalary": 3500,
+    "maxSalary": 6500,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "30-40m",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "40-50m",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "100m+",
+    "minSalary": 2250,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Junior Stewardess",
+    "category": "Interior",
+    "yachtSize": "30-40m",
+    "minSalary": 2000,
+    "maxSalary": 3000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Junior Stewardess",
+    "category": "Interior",
+    "yachtSize": "40-50m",
+    "minSalary": 2000,
+    "maxSalary": 3000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Junior Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 2000,
+    "maxSalary": 3000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Junior Stewardess",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 2000,
+    "maxSalary": 3000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Junior Stewardess",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 2000,
+    "maxSalary": 3000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Junior Stewardess",
+    "category": "Interior",
+    "yachtSize": "100m+",
+    "minSalary": 2000,
+    "maxSalary": 3000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "50-60m",
+    "minSalary": 7000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "60-80m",
+    "minSalary": 7000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "80-100m",
+    "minSalary": 7000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "100m+",
+    "minSalary": 7000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "40-50m",
+    "minSalary": 4000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "50-60m",
+    "minSalary": 4000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "60-80m",
+    "minSalary": 4000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "80-100m",
+    "minSalary": 4000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "100m+",
+    "minSalary": 4000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Sous Chef",
+    "category": "Culinary",
+    "yachtSize": "60-80m",
+    "minSalary": 3500,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Sous Chef",
+    "category": "Culinary",
+    "yachtSize": "80-100m",
+    "minSalary": 3500,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Cook",
+    "category": "Culinary",
+    "yachtSize": "30-40m",
+    "minSalary": 2500,
+    "maxSalary": 3750,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Cook",
+    "category": "Culinary",
+    "yachtSize": "40-50m",
+    "minSalary": 2500,
+    "maxSalary": 3750,
+    "currency": "USD",
+    "period": "month",
+    "source": "LuxYachts Salary Guidelines (2021)"
   }
 ]
