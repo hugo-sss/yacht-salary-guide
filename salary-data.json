@@ -2618,5 +2618,1055 @@
     "currency": "USD",
     "period": "month",
     "source": "LuxYachts Salary Guidelines (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 8500,
+    "maxSalary": 13000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 9500,
+    "maxSalary": 14000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 11000,
+    "maxSalary": 18000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 15000,
+    "maxSalary": 19000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 18000,
+    "maxSalary": 22000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 20000,
+    "maxSalary": 25000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 23000,
+    "maxSalary": 28000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 28000,
+    "maxSalary": 28000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Captain",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 28000,
+    "maxSalary": 28000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 5500,
+    "maxSalary": 5500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 6000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 6000,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 7000,
+    "maxSalary": 9500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 9000,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 8500,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 11000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 11000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 11000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 3800,
+    "maxSalary": 3800,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 4500,
+    "maxSalary": 4500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 4800,
+    "maxSalary": 4800,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 5000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 4500,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 6000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 7000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 8000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Officer",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 8000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 4750,
+    "maxSalary": 5800,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 5500,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 5000,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Officer / First Mate",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 6500,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 3800,
+    "maxSalary": 3800,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 3900,
+    "maxSalary": 3900,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 4200,
+    "maxSalary": 5000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 4000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 4800,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 4250,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 5200,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 7000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Bosun",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 7000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Mate",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 4500,
+    "maxSalary": 5500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Mate",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 5000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "30-40m",
+    "minSalary": 3000,
+    "maxSalary": 3500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 3000,
+    "maxSalary": 3500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "40-50m",
+    "minSalary": 3000,
+    "maxSalary": 4300,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 3000,
+    "maxSalary": 4000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "50-60m",
+    "minSalary": 3000,
+    "maxSalary": 3500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 3000,
+    "maxSalary": 3500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "60-80m",
+    "minSalary": 2700,
+    "maxSalary": 3500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "80-100m",
+    "minSalary": 3500,
+    "maxSalary": 3500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Deckhand",
+    "category": "Deck",
+    "yachtSize": "100m+",
+    "minSalary": 3500,
+    "maxSalary": 3500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "30-40m",
+    "minSalary": 6000,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "40-50m",
+    "minSalary": 6000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "40-50m",
+    "minSalary": 6500,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 9000,
+    "maxSalary": 11000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 9000,
+    "maxSalary": 13000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 10000,
+    "maxSalary": 15000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 15000,
+    "maxSalary": 15000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 15000,
+    "maxSalary": 15000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Chief Engineer",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 15000,
+    "maxSalary": 15000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "30-40m",
+    "minSalary": 4500,
+    "maxSalary": 4500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "40-50m",
+    "minSalary": 5000,
+    "maxSalary": 5000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "40-50m",
+    "minSalary": 5000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 5500,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 5500,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 6000,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 6000,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 9000,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Second Engineer",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 9000,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 5000,
+    "maxSalary": 5000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "50-60m",
+    "minSalary": 5500,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 7000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "60-80m",
+    "minSalary": 7000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "80-100m",
+    "minSalary": 8000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "category": "Engineering",
+    "yachtSize": "100m+",
+    "minSalary": 8000,
+    "maxSalary": 8000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "40-50m",
+    "minSalary": 6000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 6500,
+    "maxSalary": 6500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 7000,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 7500,
+    "maxSalary": 9000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 8000,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 10000,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Purser",
+    "category": "Interior",
+    "yachtSize": "100m+",
+    "minSalary": 10000,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "30-40m",
+    "minSalary": 2700,
+    "maxSalary": 5000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "40-50m",
+    "minSalary": 2700,
+    "maxSalary": 4500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "40-50m",
+    "minSalary": 3000,
+    "maxSalary": 5000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 3000,
+    "maxSalary": 5500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "50-60m",
+    "minSalary": 3000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 3000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "60-80m",
+    "minSalary": 3000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "80-100m",
+    "minSalary": 7000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Stewardess",
+    "category": "Interior",
+    "yachtSize": "100m+",
+    "minSalary": 7000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "30-40m",
+    "minSalary": 6000,
+    "maxSalary": 7500,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "40-50m",
+    "minSalary": 6000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "40-50m",
+    "minSalary": 6500,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "50-60m",
+    "minSalary": 7000,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "50-60m",
+    "minSalary": 7500,
+    "maxSalary": 10000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "60-80m",
+    "minSalary": 9000,
+    "maxSalary": 15000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "60-80m",
+    "minSalary": 10000,
+    "maxSalary": 12000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "80-100m",
+    "minSalary": 12000,
+    "maxSalary": 12000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "100m+",
+    "minSalary": 12000,
+    "maxSalary": 12000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "40-50m",
+    "minSalary": 4000,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "50-60m",
+    "minSalary": 4500,
+    "maxSalary": 6000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "60-80m",
+    "minSalary": 5000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "60-80m",
+    "minSalary": 7000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
+  },
+  {
+    "position": "Head Chef",
+    "category": "Culinary",
+    "yachtSize": "80-100m",
+    "minSalary": 7000,
+    "maxSalary": 7000,
+    "currency": "USD",
+    "period": "month",
+    "source": "Dockwalk Salary Survey (2021)"
   }
 ]

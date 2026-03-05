@@ -48,6 +48,7 @@ const sourceColors: Record<string, string> = {
   'Camper & Nicholsons (2024)': 'border-teal-500/30 bg-teal-500/10',
   'McGregor Financial Services (2025-26)': 'border-indigo-500/30 bg-indigo-500/10',
   'LuxYachts Salary Guidelines (2021)': 'border-lime-500/30 bg-lime-500/10',
+  'Dockwalk Salary Survey (2021)': 'border-sky-500/30 bg-sky-500/10',
 };
 
 const allSources = [
@@ -60,7 +61,8 @@ const allSources = [
   'Luxury Yacht Group',
   'Camper & Nicholsons (2024)',
   'McGregor Financial Services (2025-26)',
-  'LuxYachts Salary Guidelines (2021)'
+  'LuxYachts Salary Guidelines (2021)',
+  'Dockwalk Salary Survey (2021)'
 ];
 
 // Supabase config
@@ -117,13 +119,21 @@ export default function SalaryGuide() {
     'Captain',
     'Chief Engineer',
     'First Officer',
+    'Second Officer',
+    'Mate',
     'Bosun',
     'Deckhand',
     'Junior Deckhand',
     'Chief Stewardess',
+    'Second Stewardess',
     'Stewardess',
     'Junior Stewardess',
-    'Head Chef'
+    'Purser',
+    'ETO / AV-IT',
+    'Second Engineer',
+    'Head Chef',
+    'Sous Chef',
+    'Cook'
   ];
 
   const sizeOrder = [
