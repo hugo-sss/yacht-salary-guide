@@ -108,6 +108,15 @@ export default function SalaryGuide() {
     [salaryData]
   );
 
+  const availableSizesForPosition = useMemo(() => {
+    if (!selectedPosition) return availableYachtSizes;
+    return [...new Set(
+      salaryData
+        .filter(d => d.position === selectedPosition)
+        .map(d => d.yacht_size)
+    )].sort();
+  }, [salaryData, selectedPosition, availableYachtSizes]);
+
   const comparisonData = useMemo(() => {
     if (!selectedPosition || !selectedYachtSize) return [];
     return salaryData.filter(d => 
@@ -230,7 +239,7 @@ export default function SalaryGuide() {
                   className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500/50"
                 >
                   <option value="">Select yacht size...</option>
-                  {availableYachtSizes.map(size => (
+                  {availableSizesForPosition.map(size => (
                     <option key={size} value={size}>{size}</option>
                   ))}
                 </select>
@@ -284,6 +293,24 @@ export default function SalaryGuide() {
                   ))}
                 </div>
               </>
+            )}
+
+            {selectedPosition && selectedYachtSize && averageSalary.count === 0 && (
+              <div className="glass-card rounded-2xl p-6 border border-white/5 bg-white/[0.03]">
+                <h3 className="text-lg font-semibold text-white mb-2">No salary data for this combination</h3>
+                <p className="text-white/60">Try a different yacht size for {selectedPosition}.</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {availableSizesForPosition.map(size => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedYachtSize(size)}
+                      className="px-3 py-1 text-xs rounded-full bg-white/10 hover:bg-white/20 text-white/80"
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
         )}
