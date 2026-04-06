@@ -5,10 +5,10 @@ import type { LucideIcon } from 'lucide-react';
 import {
   Anchor,
   ArrowRightLeft,
+  Calculator,
   ChefHat,
   Database,
   DollarSign,
-  FileBarChart2,
   Loader2,
   Radar,
   Sparkles,
@@ -28,8 +28,23 @@ import {
   getUniqueSources,
   loadSalaryData,
 } from '@/lib/supabase';
+import {
+  ESTIMATOR_CHARTER_LOADS,
+  ESTIMATOR_DEPARTMENTS,
+  ESTIMATOR_TIP_RATES,
+  ESTIMATOR_YACHT_TYPES,
+  type CompensationEstimate,
+  type EstimatorCharterLoad,
+  type EstimatorDepartment,
+  type EstimatorTipRate,
+  type EstimatorYachtSize,
+  type EstimatorYachtType,
+  calculateCompensationEstimate,
+  getEstimatorAvailableSizes,
+  getEstimatorPositions,
+} from '@/lib/compensation-estimator';
 
-type ViewMode = 'selector' | 'table';
+type ViewMode = 'selector' | 'table' | 'estimate';
 type DisplayCurrency = 'EUR' | 'USD';
 
 type SourceAccent = {
@@ -139,6 +154,38 @@ const SOURCE_ACCENTS: SourceAccent[] = [
   },
 ];
 
+const VIEW_MODE_META: Record<
+  ViewMode,
+  {
+    buttonLabel: string;
+    eyebrow: string;
+    title: string;
+    description: string;
+  }
+> = {
+  selector: {
+    buttonLabel: 'Benchmark',
+    eyebrow: 'Published Benchmark',
+    title: 'See the market first',
+    description:
+      'Start with the blended market benchmark from matching salary guides, standardized into cleaner comparison bands.',
+  },
+  table: {
+    buttonLabel: 'Sources',
+    eyebrow: 'Source Evidence',
+    title: 'Inspect the source rows',
+    description:
+      'Move from the headline range to the exact guide rows, original yacht bands, and attributed source names underneath.',
+  },
+  estimate: {
+    buttonLabel: 'Estimate',
+    eyebrow: 'Tailored Estimate',
+    title: 'Model a more personal package',
+    description:
+      "Apply yacht program assumptions from Hugo's original calculator to turn the market picture into a more tailored package range.",
+  },
+};
+
 function BackgroundLayer() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#020617]">
@@ -188,6 +235,25 @@ function formatMoney(value: number, currency = 'EUR'): string {
   }
 }
 
+function formatMoneyRange(range: { low: number; high: number }, currency = 'EUR'): string {
+  return `${formatMoney(range.low, currency)} to ${formatMoney(range.high, currency)}`;
+}
+
+function getRangeMidpoint(range: { low: number; high: number }): number {
+  return Math.round((range.low + range.high) / 2);
+}
+
+function convertMoneyRange(
+  range: { low: number; high: number },
+  fromCurrency: string,
+  toCurrency: DisplayCurrency
+): { low: number; high: number } {
+  return {
+    low: Math.round(convertMoney(range.low, fromCurrency, toCurrency)),
+    high: Math.round(convertMoney(range.high, fromCurrency, toCurrency)),
+  };
+}
+
 function convertMoney(value: number, fromCurrency: string, toCurrency: DisplayCurrency): number {
   if (fromCurrency !== 'EUR' && fromCurrency !== 'USD') {
     return value;
@@ -233,6 +299,15 @@ export default function SalaryGuide() {
   const [selectedPosition, setSelectedPosition] = useState('');
   const [selectedYachtSize, setSelectedYachtSize] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('selector');
+  const [estimatorDepartment, setEstimatorDepartment] = useState<EstimatorDepartment>('Deck');
+  const [estimatorYachtSize, setEstimatorYachtSize] = useState<EstimatorYachtSize>('31-40m');
+  const [estimatorPosition, setEstimatorPosition] = useState('Junior Deckhand');
+  const [estimatorYachtType, setEstimatorYachtType] = useState<EstimatorYachtType>('Charter');
+  const [estimatorCharterLoad, setEstimatorCharterLoad] = useState<EstimatorCharterLoad>(
+    'Heavy (10-12 weeks)'
+  );
+  const [estimatorTipRate, setEstimatorTipRate] = useState<EstimatorTipRate>(0.1);
+  const [estimatorDualSeason, setEstimatorDualSeason] = useState(false);
 
   useEffect(() => {
     let isCancelled = false;
@@ -259,6 +334,14 @@ export default function SalaryGuide() {
   const availablePositions = useMemo(() => getUniquePositions(salaryData), [salaryData]);
   const availableYachtSizes = useMemo(() => getUniqueComparisonYachtBands(salaryData), [salaryData]);
   const availableSources = useMemo(() => getUniqueSources(salaryData), [salaryData]);
+  const estimatorAvailableSizes = useMemo(
+    () => getEstimatorAvailableSizes(estimatorDepartment),
+    [estimatorDepartment]
+  );
+  const estimatorAvailablePositions = useMemo(
+    () => getEstimatorPositions(estimatorDepartment, estimatorYachtSize),
+    [estimatorDepartment, estimatorYachtSize]
+  );
 
   const sourceAccents = useMemo<Record<string, SourceAccent>>(
     () =>
@@ -358,6 +441,53 @@ export default function SalaryGuide() {
   const lowestSource = comparisonData[comparisonData.length - 1] ?? null;
   const hasActiveFilters = Boolean(selectedPosition || selectedYachtSize);
   const spotlightPositions = useMemo(() => availablePositions.slice(0, 8), [availablePositions]);
+  const estimatorResult = useMemo<CompensationEstimate | null>(
+    () =>
+      calculateCompensationEstimate({
+        department: estimatorDepartment,
+        position: estimatorPosition,
+        yachtSize: estimatorYachtSize,
+        yachtType: estimatorYachtType,
+        charterLoad: estimatorCharterLoad,
+        tipRate: estimatorTipRate,
+        dualSeason: estimatorDualSeason,
+      }),
+    [
+      estimatorCharterLoad,
+      estimatorDepartment,
+      estimatorDualSeason,
+      estimatorPosition,
+      estimatorTipRate,
+      estimatorYachtSize,
+      estimatorYachtType,
+    ]
+  );
+  const estimatorIsCharter = estimatorYachtType === 'Charter';
+  const activeViewMeta = VIEW_MODE_META[viewMode];
+  const estimatorDisplayData = useMemo(() => {
+    if (!estimatorResult) {
+      return null;
+    }
+
+    const monthlySalary = convertMoneyRange(estimatorResult.monthlySalary, 'EUR', displayCurrency);
+    const annualBaseSalary = convertMoneyRange(estimatorResult.annualBaseSalary, 'EUR', displayCurrency);
+    const weeklyTips = convertMoneyRange(estimatorResult.weeklyTips, 'EUR', displayCurrency);
+    const seasonalTips = convertMoneyRange(estimatorResult.seasonalTips, 'EUR', displayCurrency);
+    const annualTotal = convertMoneyRange(estimatorResult.annualTotal, 'EUR', displayCurrency);
+
+    return {
+      monthlySalary,
+      annualBaseSalary,
+      weeklyTips,
+      seasonalTips,
+      annualTotal,
+      charterPriceRange: estimatorResult.charterPriceRange
+        ? convertMoneyRange(estimatorResult.charterPriceRange, 'EUR', displayCurrency)
+        : null,
+      monthlyMidpoint: getRangeMidpoint(monthlySalary),
+      annualMidpoint: getRangeMidpoint(annualTotal),
+    };
+  }, [displayCurrency, estimatorResult]);
 
   const handlePositionChange = (nextPosition: string) => {
     setSelectedPosition(nextPosition);
@@ -372,6 +502,31 @@ export default function SalaryGuide() {
 
     if (!nextSizes.includes(selectedYachtSize)) {
       setSelectedYachtSize('');
+    }
+  };
+
+  const handleEstimatorDepartmentChange = (nextDepartment: EstimatorDepartment) => {
+    const nextSizes = getEstimatorAvailableSizes(nextDepartment);
+    const nextSize = nextSizes.includes(estimatorYachtSize)
+      ? estimatorYachtSize
+      : (nextSizes[0] ?? '31-40m');
+    const nextPositions = getEstimatorPositions(nextDepartment, nextSize);
+
+    setEstimatorDepartment(nextDepartment);
+    setEstimatorYachtSize(nextSize);
+
+    if (!nextPositions.includes(estimatorPosition)) {
+      setEstimatorPosition(nextPositions[0] ?? '');
+    }
+  };
+
+  const handleEstimatorYachtSizeChange = (nextSize: EstimatorYachtSize) => {
+    const nextPositions = getEstimatorPositions(estimatorDepartment, nextSize);
+
+    setEstimatorYachtSize(nextSize);
+
+    if (!nextPositions.includes(estimatorPosition)) {
+      setEstimatorPosition(nextPositions[0] ?? '');
     }
   };
 
@@ -410,9 +565,9 @@ export default function SalaryGuide() {
                 Yacht Crew Salary Guide 2026
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-                A polished benchmark view for comparing published yacht crew salaries across roles,
-                departments, and yacht-size bands, with each result clearly attributed to the guide
-                it came from.
+                One clear salary tool for three different questions: what the published market says,
+                where the benchmark comes from, and what a more tailored next-package range might
+                look like once yacht-program assumptions are applied.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200">
@@ -448,10 +603,8 @@ export default function SalaryGuide() {
             </div>
 
             <div className="glass-card w-full max-w-md rounded-[1.75rem] border border-white/10 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-                View Mode
-              </p>
-              <div className="mt-3 grid grid-cols-2 gap-2 rounded-2xl bg-white/5 p-1">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">How It Works</p>
+              <div className="mt-3 grid grid-cols-3 gap-2 rounded-2xl bg-white/5 p-1">
                 <button
                   onClick={() => setViewMode('selector')}
                   className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition ${
@@ -461,7 +614,7 @@ export default function SalaryGuide() {
                   }`}
                 >
                   <ArrowRightLeft className="h-4 w-4" />
-                  Compare
+                  {VIEW_MODE_META.selector.buttonLabel}
                 </button>
                 <button
                   onClick={() => setViewMode('table')}
@@ -472,20 +625,59 @@ export default function SalaryGuide() {
                   }`}
                 >
                   <TableProperties className="h-4 w-4" />
-                  Table
+                  {VIEW_MODE_META.table.buttonLabel}
+                </button>
+                <button
+                  onClick={() => setViewMode('estimate')}
+                  className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition ${
+                    viewMode === 'estimate'
+                      ? 'bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-500/20'
+                      : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                  }`}
+                >
+                  <Calculator className="h-4 w-4" />
+                  {VIEW_MODE_META.estimate.buttonLabel}
                 </button>
               </div>
-              <div className="mt-5 space-y-3 text-sm leading-6 text-slate-300">
-                <p className="flex items-start gap-3">
-                  <Database className="mt-0.5 h-4 w-4 shrink-0 text-orange-200" />
-                  Choose a role and comparison band to see a blended market benchmark from the
-                  guides that match.
+              <div className="mt-5 rounded-[1.5rem] border border-white/10 bg-slate-950/40 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  {activeViewMeta.eyebrow}
                 </p>
-                <p className="flex items-start gap-3">
-                  <FileBarChart2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" />
-                  Every result still shows the original guide name and published yacht band for
-                  clarity.
-                </p>
+                <h2 className="mt-2 text-lg font-semibold text-white">{activeViewMeta.title}</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{activeViewMeta.description}</p>
+              </div>
+              <div className="mt-4 space-y-2">
+                {(['selector', 'table', 'estimate'] as ViewMode[]).map((mode, index) => {
+                  const isActive = viewMode === mode;
+                  const meta = VIEW_MODE_META[mode];
+
+                  return (
+                    <div
+                      key={mode}
+                      className={`rounded-2xl border px-4 py-3 transition ${
+                        isActive
+                          ? 'border-orange-400/20 bg-orange-500/10'
+                          : 'border-white/8 bg-white/[0.03]'
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <span
+                          className={`mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${
+                            isActive
+                              ? 'bg-orange-500/20 text-white'
+                              : 'bg-white/5 text-slate-300'
+                          }`}
+                        >
+                          {index + 1}
+                        </span>
+                        <div>
+                          <p className="text-sm font-medium text-white">{meta.buttonLabel}</p>
+                          <p className="mt-1 text-xs leading-5 text-slate-400">{meta.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -540,180 +732,438 @@ export default function SalaryGuide() {
           </section>
         ) : null}
 
-        <section className="mt-8 grid gap-6 xl:grid-cols-[1.4fr_0.9fr]">
-          <div className="glass-card rounded-[1.75rem] p-6">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-                  Compare Salaries
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold text-white">Choose a role and yacht band</h2>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
-                  The compare view groups nearby source sizes into simpler client-facing bands.
-                </p>
-              </div>
-              {hasActiveFilters ? (
+        {viewMode === 'estimate' ? (
+          <section className="mt-8 grid gap-6 xl:grid-cols-[1.4fr_0.9fr]">
+            <div className="glass-card rounded-[1.75rem] p-6">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                    Tailored Estimate
+                  </p>
+                  <h2 className="mt-2 text-2xl font-semibold text-white">
+                    Model your next package
+                  </h2>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+                    This is the second layer after the benchmark view: same salary conversation, but
+                    with yacht type, charter pace, dual-season upside, and tip assumptions added on
+                    top of Hugo&apos;s original calculator logic.
+                  </p>
+                </div>
                 <button
                   onClick={() => {
-                    setSelectedPosition('');
-                    setSelectedYachtSize('');
+                    setEstimatorDepartment('Deck');
+                    setEstimatorYachtSize('31-40m');
+                    setEstimatorPosition('Junior Deckhand');
+                    setEstimatorYachtType('Charter');
+                    setEstimatorCharterLoad('Heavy (10-12 weeks)');
+                    setEstimatorTipRate(0.1);
+                    setEstimatorDualSeason(false);
                   }}
                   className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
                 >
-                  Clear filters
+                  Reset estimator
                 </button>
-              ) : null}
-            </div>
+              </div>
 
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              <label className="block">
-                <span className="mb-2 block text-sm font-medium text-slate-200">Position</span>
-                <select
-                  value={selectedPosition}
-                  onChange={(event) => handlePositionChange(event.target.value)}
-                  className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white transition focus:border-orange-400/40 focus:ring-2 focus:ring-orange-500/20"
-                >
-                  <option value="">All positions</option>
-                  {availablePositions.map((position) => (
-                    <option key={position} value={position}>
-                      {position}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-200">Department</span>
+                  <select
+                    value={estimatorDepartment}
+                    onChange={(event) =>
+                      handleEstimatorDepartmentChange(event.target.value as EstimatorDepartment)
+                    }
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white transition focus:border-orange-400/40 focus:ring-2 focus:ring-orange-500/20"
+                  >
+                    {ESTIMATOR_DEPARTMENTS.map((department) => (
+                      <option key={department} value={department}>
+                        {department}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
-              <label className="block">
-                <span className="mb-2 block text-sm font-medium text-slate-200">Yacht size</span>
-                <select
-                  value={selectedYachtSize}
-                  onChange={(event) => setSelectedYachtSize(event.target.value)}
-                  className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white transition focus:border-orange-400/40 focus:ring-2 focus:ring-orange-500/20"
-                >
-                  <option value="">All comparison bands</option>
-                  {availableSizesForPosition.map((size) => (
-                    <option key={size} value={size}>
-                      {size}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
+                <label className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-200">Yacht size</span>
+                  <select
+                    value={estimatorYachtSize}
+                    onChange={(event) =>
+                      handleEstimatorYachtSizeChange(event.target.value as EstimatorYachtSize)
+                    }
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white transition focus:border-orange-400/40 focus:ring-2 focus:ring-orange-500/20"
+                  >
+                    {estimatorAvailableSizes.map((size) => (
+                      <option key={size} value={size}>
+                        {size}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
-            <div className="mt-5">
-              {selectedPosition ? (
-                <>
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="text-sm text-slate-300">
-                      Comparison bands for <span className="font-medium text-white">{selectedPosition}</span>
-                    </p>
-                    <span
-                      className={`inline-flex w-fit items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${categoryMeta.badge}`}
-                    >
-                      {selectedCategory}
-                    </span>
-                  </div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {availableSizesForPosition.map((size) => (
+                <label className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-200">Position</span>
+                  <select
+                    value={estimatorPosition}
+                    onChange={(event) => setEstimatorPosition(event.target.value)}
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white transition focus:border-orange-400/40 focus:ring-2 focus:ring-orange-500/20"
+                  >
+                    {estimatorAvailablePositions.length > 0 ? (
+                      estimatorAvailablePositions.map((position) => (
+                        <option key={position} value={position}>
+                          {position}
+                        </option>
+                      ))
+                    ) : (
+                      <option value="">No roles available for this combination</option>
+                    )}
+                  </select>
+                </label>
+
+                <div className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-200">Yacht type</span>
+                  <div className="grid grid-cols-2 gap-2 rounded-2xl bg-white/5 p-1">
+                    {ESTIMATOR_YACHT_TYPES.map((type) => (
                       <button
-                        key={size}
-                        onClick={() => setSelectedYachtSize(size)}
-                        className={`rounded-full border px-3 py-1.5 text-sm transition ${
-                          selectedYachtSize === size
-                            ? 'border-orange-400/30 bg-orange-500/15 text-white'
-                            : 'border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
+                        key={type}
+                        onClick={() => setEstimatorYachtType(type)}
+                        className={`rounded-xl px-4 py-3 text-sm font-medium transition ${
+                          estimatorYachtType === type
+                            ? 'bg-orange-500/20 text-white'
+                            : 'text-slate-300 hover:bg-white/5 hover:text-white'
                         }`}
                       >
-                        {size}
+                        {type}
                       </button>
                     ))}
                   </div>
-                  <p className="mt-3 text-xs leading-5 text-slate-400">
-                    Source cards below keep each guide&apos;s original published band, even when the
-                    selector groups them into a cleaner comparison range.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p className="text-sm text-slate-300">Quick-start roles</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {spotlightPositions.map((position) => (
-                      <button
-                        key={position}
-                        onClick={() => handlePositionChange(position)}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+                </div>
+              </div>
+
+              <div className="mt-5 rounded-[1.5rem] border border-white/10 bg-slate-950/40 p-5">
+                {estimatorIsCharter ? (
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <label className="block">
+                      <span className="mb-2 block text-sm font-medium text-slate-200">
+                        Charter pace
+                      </span>
+                      <select
+                        value={estimatorCharterLoad}
+                        onChange={(event) =>
+                          setEstimatorCharterLoad(event.target.value as EstimatorCharterLoad)
+                        }
+                        className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white transition focus:border-orange-400/40 focus:ring-2 focus:ring-orange-500/20"
                       >
-                        {position}
-                      </button>
-                    ))}
+                        {ESTIMATOR_CHARTER_LOADS.map((load) => (
+                          <option key={load} value={load}>
+                            {load}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+
+                    <div className="block">
+                      <span className="mb-2 block text-sm font-medium text-slate-200">
+                        Dual season
+                      </span>
+                      <div className="grid grid-cols-2 gap-2 rounded-2xl bg-white/5 p-1">
+                        {['No', 'Yes'].map((label) => {
+                          const isActive = estimatorDualSeason === (label === 'Yes');
+
+                          return (
+                            <button
+                              key={label}
+                              onClick={() => setEstimatorDualSeason(label === 'Yes')}
+                              className={`rounded-xl px-4 py-3 text-sm font-medium transition ${
+                                isActive
+                                  ? 'bg-orange-500/20 text-white'
+                                  : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                              }`}
+                            >
+                              {label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="md:col-span-2">
+                      <span className="mb-2 block text-sm font-medium text-slate-200">
+                        Tip percentage
+                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        {ESTIMATOR_TIP_RATES.map((rate) => (
+                          <button
+                            key={rate}
+                            onClick={() => setEstimatorTipRate(rate)}
+                            className={`rounded-full border px-3 py-1.5 text-sm transition ${
+                              estimatorTipRate === rate
+                                ? 'border-orange-400/30 bg-orange-500/15 text-white'
+                                : 'border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
+                            }`}
+                          >
+                            {Math.round(rate * 100)}%
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </>
-              )}
-            </div>
-          </div>
-
-          <div className="glass-card rounded-[1.75rem] p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-              Reading The Data
-            </p>
-            <div className="mt-4 space-y-4 text-sm leading-6 text-slate-300">
-              <p className="flex items-start gap-3">
-                <span className="mt-1 h-2.5 w-2.5 rounded-full bg-orange-300" />
-                Every salary range is monthly pay as published by the source guide.
-              </p>
-              <p className="flex items-start gap-3">
-                <span className="mt-1 h-2.5 w-2.5 rounded-full bg-cyan-300" />
-                The average shown is the midpoint between each source&apos;s minimum and maximum.
-              </p>
-              <p className="flex items-start gap-3">
-                <span className="mt-1 h-2.5 w-2.5 rounded-full bg-amber-300" />
-                The table stays in sync and keeps the original guide band visible on every row.
-              </p>
+                ) : (
+                  <p className="text-sm leading-6 text-slate-300">
+                    Private-yacht mode keeps the estimate focused on base salary only. Charter
+                    prices, seasonal tips, and dual-season upside are excluded.
+                  </p>
+                )}
+              </div>
             </div>
 
-            <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-slate-950/40 p-5">
+            <div className="glass-card rounded-[1.75rem] p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-                Current Focus
+                Estimate Snapshot
               </p>
-              {selectedPosition && selectedYachtSize ? (
-                <div className="mt-3">
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={`flex h-12 w-12 items-center justify-center rounded-2xl border ${categoryMeta.iconWrap}`}
-                    >
-                      <CategoryIcon className={`h-6 w-6 ${categoryMeta.iconColor}`} />
-                    </div>
-                    <div>
-                      <p className="text-lg font-semibold text-white">{selectedPosition}</p>
-                      <p className="text-sm text-slate-300">
-                        {selectedYachtSize} comparison band across {comparisonData.length} matching
-                        guide{comparisonData.length === 1 ? '' : 's'}.
-                      </p>
+              {estimatorResult ? (
+                <div className="mt-4 space-y-4">
+                  <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/40 p-5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-orange-500/10 text-orange-200">
+                        <Calculator className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <p className="text-lg font-semibold text-white">{estimatorResult.position}</p>
+                        <p className="text-sm text-slate-300">
+                          {estimatorResult.department} on a {estimatorResult.yachtSize} yacht.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    <div className={`rounded-2xl border ${categoryMeta.statRing} bg-white/5 p-4`}>
-                      <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Published average</p>
+
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-2xl border border-orange-400/20 bg-orange-500/10 p-4">
+                      <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                        Monthly midpoint
+                      </p>
                       <p className="mt-2 text-2xl font-semibold text-white">
-                        {formatMoney(averageSalary.avg, displayCurrency)}
+                        {estimatorDisplayData
+                          ? formatMoney(estimatorDisplayData.monthlyMidpoint, displayCurrency)
+                          : '—'}
                       </p>
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                      <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Range spread</p>
+                      <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                        Annual package midpoint
+                      </p>
                       <p className="mt-2 text-2xl font-semibold text-white">
-                        {formatMoney(averageSalary.max - averageSalary.min, displayCurrency)}
+                        {estimatorDisplayData
+                          ? formatMoney(estimatorDisplayData.annualMidpoint, displayCurrency)
+                          : '—'}
                       </p>
                     </div>
                   </div>
+
+                  <div className="space-y-3 text-sm leading-6 text-slate-300">
+                    <p className="flex items-start gap-3">
+                      <span className="mt-1 h-2.5 w-2.5 rounded-full bg-orange-300" />
+                      Built from Hugo&apos;s original SSS workbook rather than the broader live
+                      benchmark blend.
+                    </p>
+                    <p className="flex items-start gap-3">
+                      <span className="mt-1 h-2.5 w-2.5 rounded-full bg-cyan-300" />
+                      Position choice acts as the practical experience proxy here, because the
+                      workbook does not model years of experience separately.
+                    </p>
+                    <p className="flex items-start gap-3">
+                      <span className="mt-1 h-2.5 w-2.5 rounded-full bg-amber-300" />
+                      Charter upside is based on yacht-size charter prices, estimated crew count,
+                      tip percentage, and charter weeks from the workbook.
+                    </p>
+                  </div>
                 </div>
               ) : (
-                <p className="mt-3 text-sm leading-6 text-slate-300">
-                  Pick a role and size band to surface the strongest comparison view and show the
-                  exact source cards.
+                <p className="mt-4 text-sm leading-6 text-slate-300">
+                  Choose a department, yacht band, and position to generate a package estimate.
                 </p>
               )}
             </div>
-          </div>
-        </section>
+          </section>
+        ) : (
+          <section className="mt-8 grid gap-6 xl:grid-cols-[1.4fr_0.9fr]">
+            <div className="glass-card rounded-[1.75rem] p-6">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                    Published Benchmark
+                  </p>
+                  <h2 className="mt-2 text-2xl font-semibold text-white">Build the market view</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">
+                    Start with the market story first. The benchmark view groups nearby source sizes
+                    into simpler client-facing bands so multiple salary guides can be read side by side.
+                  </p>
+                </div>
+                {hasActiveFilters ? (
+                  <button
+                    onClick={() => {
+                      setSelectedPosition('');
+                      setSelectedYachtSize('');
+                    }}
+                    className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
+                  >
+                    Clear filters
+                  </button>
+                ) : null}
+              </div>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                <label className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-200">Position</span>
+                  <select
+                    value={selectedPosition}
+                    onChange={(event) => handlePositionChange(event.target.value)}
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white transition focus:border-orange-400/40 focus:ring-2 focus:ring-orange-500/20"
+                  >
+                    <option value="">All positions</option>
+                    {availablePositions.map((position) => (
+                      <option key={position} value={position}>
+                        {position}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-200">Yacht size</span>
+                  <select
+                    value={selectedYachtSize}
+                    onChange={(event) => setSelectedYachtSize(event.target.value)}
+                    className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white transition focus:border-orange-400/40 focus:ring-2 focus:ring-orange-500/20"
+                  >
+                    <option value="">All comparison bands</option>
+                    {availableSizesForPosition.map((size) => (
+                      <option key={size} value={size}>
+                        {size}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+
+              <div className="mt-5">
+                {selectedPosition ? (
+                  <>
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <p className="text-sm text-slate-300">
+                        Comparison bands for <span className="font-medium text-white">{selectedPosition}</span>
+                      </p>
+                      <span
+                        className={`inline-flex w-fit items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${categoryMeta.badge}`}
+                      >
+                        {selectedCategory}
+                      </span>
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {availableSizesForPosition.map((size) => (
+                        <button
+                          key={size}
+                          onClick={() => setSelectedYachtSize(size)}
+                          className={`rounded-full border px-3 py-1.5 text-sm transition ${
+                            selectedYachtSize === size
+                              ? 'border-orange-400/30 bg-orange-500/15 text-white'
+                              : 'border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
+                          }`}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                    <p className="mt-3 text-xs leading-5 text-slate-400">
+                      Source cards below keep each guide&apos;s original published band, even when the
+                      selector groups them into a cleaner comparison range.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-sm text-slate-300">Quick-start roles</p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {spotlightPositions.map((position) => (
+                        <button
+                          key={position}
+                          onClick={() => handlePositionChange(position)}
+                          className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+                        >
+                          {position}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            <div className="glass-card rounded-[1.75rem] p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                Why This View Works
+              </p>
+              <div className="mt-4 space-y-4 text-sm leading-6 text-slate-300">
+                <p className="flex items-start gap-3">
+                  <span className="mt-1 h-2.5 w-2.5 rounded-full bg-orange-300" />
+                  Every salary range is monthly pay as published by the source guide, so the market
+                  picture stays grounded in real benchmark rows.
+                </p>
+                <p className="flex items-start gap-3">
+                  <span className="mt-1 h-2.5 w-2.5 rounded-full bg-cyan-300" />
+                  The benchmark average is the midpoint between each source&apos;s minimum and maximum,
+                  which keeps the summary simple without hiding the spread.
+                </p>
+                <p className="flex items-start gap-3">
+                  <span className="mt-1 h-2.5 w-2.5 rounded-full bg-amber-300" />
+                  The source table stays in sync and keeps the original guide band visible on every
+                  row, so the headline range always has evidence behind it.
+                </p>
+              </div>
+
+              <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-slate-950/40 p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                  Current Focus
+                </p>
+                {selectedPosition && selectedYachtSize ? (
+                  <div className="mt-3">
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`flex h-12 w-12 items-center justify-center rounded-2xl border ${categoryMeta.iconWrap}`}
+                      >
+                        <CategoryIcon className={`h-6 w-6 ${categoryMeta.iconColor}`} />
+                      </div>
+                      <div>
+                        <p className="text-lg font-semibold text-white">{selectedPosition}</p>
+                        <p className="text-sm text-slate-300">
+                          {selectedYachtSize} comparison band across {comparisonData.length} matching
+                          guide{comparisonData.length === 1 ? '' : 's'}.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                      <div className={`rounded-2xl border ${categoryMeta.statRing} bg-white/5 p-4`}>
+                        <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Published average</p>
+                        <p className="mt-2 text-2xl font-semibold text-white">
+                          {formatMoney(averageSalary.avg, displayCurrency)}
+                        </p>
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                        <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Range spread</p>
+                        <p className="mt-2 text-2xl font-semibold text-white">
+                          {formatMoney(averageSalary.max - averageSalary.min, displayCurrency)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="mt-3 text-sm leading-6 text-slate-300">
+                    Pick a role and size band to surface the strongest comparison view and show the
+                    exact source cards.
+                  </p>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
 
         {viewMode === 'selector' ? (
           <section className="mt-8 space-y-6">
@@ -889,16 +1339,16 @@ export default function SalaryGuide() {
               </div>
             )}
           </section>
-        ) : (
+        ) : viewMode === 'table' ? (
           <section className="mt-8">
             <div className="glass-card overflow-hidden rounded-[2rem] border border-white/10">
               <div className="flex flex-col gap-3 border-b border-white/10 px-6 py-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-                    Benchmark Table
+                    Source Table
                   </p>
                   <h3 className="mt-2 text-2xl font-semibold text-white">
-                    {hasActiveFilters ? 'Filtered salary benchmarks' : 'All salary benchmarks'}
+                    {hasActiveFilters ? 'Filtered source rows' : 'All benchmark source rows'}
                   </h3>
                 </div>
                 <p className="text-sm text-slate-400">
@@ -970,58 +1420,285 @@ export default function SalaryGuide() {
               ) : null}
             </div>
           </section>
-        )}
+        ) : (
+          <section className="mt-8 space-y-6">
+            {estimatorResult ? (
+              <>
+                <div className="glass-card relative overflow-hidden rounded-[2rem] border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-white/[0.03] to-transparent p-6 sm:p-8">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_35%)]" />
+                  <div className="relative flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-[1.4rem] border border-orange-400/20 bg-orange-500/[0.12]">
+                        <Calculator className="h-8 w-8 text-orange-200" />
+                      </div>
+                      <div>
+                        <span className="inline-flex items-center rounded-full border border-orange-400/20 bg-orange-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-orange-100">
+                          Tailored Estimate
+                        </span>
+                        <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">
+                          {estimatorResult.position}
+                        </h2>
+                        <p className="mt-2 text-base text-slate-300">
+                          {estimatorResult.yachtSize} {estimatorResult.yachtType.toLowerCase()} yacht
+                          {estimatorResult.yachtType === 'Charter'
+                            ? estimatorResult.dualSeason
+                              ? ', dual season'
+                              : ', single season'
+                            : ''}
+                          .
+                        </p>
+                      </div>
+                    </div>
 
-        <section className="mt-8 glass-card rounded-[1.75rem] p-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-                Data Sources
-              </p>
-              <h3 className="mt-2 text-2xl font-semibold text-white">Benchmark sources in the guide</h3>
-            </div>
-            <p className="max-w-xl text-sm leading-6 text-slate-400">
-              Source cards glow when they match the currently selected role and yacht-size band.
-            </p>
-          </div>
+                    <div className="grid gap-3 sm:grid-cols-2 lg:w-[30rem]">
+                      <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                        <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                          Monthly salary
+                        </p>
+                        <p className="mt-2 text-xl font-semibold text-white">
+                          {estimatorDisplayData
+                            ? formatMoneyRange(estimatorDisplayData.monthlySalary, displayCurrency)
+                            : '—'}
+                        </p>
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                        <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                          Annual total
+                        </p>
+                        <p className="mt-2 text-xl font-semibold text-white">
+                          {estimatorDisplayData
+                            ? formatMoneyRange(estimatorDisplayData.annualTotal, displayCurrency)
+                            : '—'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {availableSources.map((source) => {
-              const accent = sourceAccents[source] ?? SOURCE_ACCENTS[0];
-              const isHighlighted = comparisonData.some((record) => record.source === source);
-
-              return (
-                <div
-                  key={source}
-                  className={`rounded-[1.4rem] border p-4 ${
-                    isHighlighted
-                      ? `${accent.card} border-white/10`
-                      : 'border-white/10 bg-white/[0.03]'
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-semibold text-white">{source}</p>
-                      <p className="mt-1 text-sm text-slate-400">
-                        {sourceCounts[source]?.toLocaleString() ?? '0'} benchmark row
-                        {sourceCounts[source] === 1 ? '' : 's'}
+                  <div className="relative mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                      <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Monthly base</p>
+                      <p className="mt-2 text-lg font-semibold text-white">
+                        {estimatorDisplayData
+                          ? formatMoneyRange(estimatorDisplayData.monthlySalary, displayCurrency)
+                          : '—'}
                       </p>
                     </div>
-                    <span
-                      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] ${
-                        isHighlighted
-                          ? accent.pill
-                          : 'border-white/10 bg-white/5 text-slate-300'
-                      }`}
-                    >
-                      {isHighlighted ? 'Match' : 'Available'}
-                    </span>
+                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                      <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Yearly base</p>
+                      <p className="mt-2 text-lg font-semibold text-white">
+                        {estimatorDisplayData
+                          ? formatMoneyRange(estimatorDisplayData.annualBaseSalary, displayCurrency)
+                          : '—'}
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                      <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                        {estimatorIsCharter ? 'Seasonal tips' : 'Charter upside'}
+                      </p>
+                      <p className="mt-2 text-lg font-semibold text-white">
+                        {estimatorIsCharter
+                          ? estimatorDisplayData
+                            ? formatMoneyRange(estimatorDisplayData.seasonalTips, displayCurrency)
+                            : '—'
+                          : 'Not included'}
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                      <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                        Total package
+                      </p>
+                      <p className="mt-2 text-lg font-semibold text-white">
+                        {estimatorDisplayData
+                          ? formatMoneyRange(estimatorDisplayData.annualTotal, displayCurrency)
+                          : '—'}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </section>
+
+                <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
+                  <div className="glass-card rounded-[1.75rem] p-6">
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                      How This Estimate Works
+                    </p>
+                    <div className="mt-4 space-y-4 text-sm leading-6 text-slate-300">
+                      <p className="flex items-start gap-3">
+                        <span className="mt-1 h-2.5 w-2.5 rounded-full bg-orange-300" />
+                        Base salary comes straight from the original role-and-yacht-size table in
+                        Hugo&apos;s SSS calculator, so this layer starts from a defined pay baseline.
+                      </p>
+                      <p className="flex items-start gap-3">
+                        <span className="mt-1 h-2.5 w-2.5 rounded-full bg-cyan-300" />
+                        This is not trying to outguess every recruiter spreadsheet. The role itself
+                        acts as the practical experience proxy because the workbook does not model
+                        years separately.
+                      </p>
+                      <p className="flex items-start gap-3">
+                        <span className="mt-1 h-2.5 w-2.5 rounded-full bg-amber-300" />
+                        Charter upside is where this layer adds value: it models charter price
+                        bands, estimated crew count, tip percentage, and seasonal charter weeks on
+                        top of the base range.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="glass-card rounded-[1.75rem] p-6">
+                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                        Estimate Inputs
+                      </p>
+                      <div className="mt-4 grid gap-3 text-sm">
+                        <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                          <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Department</p>
+                          <p className="mt-2 font-medium text-white">{estimatorResult.department}</p>
+                        </div>
+                        <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                          <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Yacht type</p>
+                          <p className="mt-2 font-medium text-white">{estimatorResult.yachtType}</p>
+                        </div>
+                        <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                          <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Tip rate</p>
+                          <p className="mt-2 font-medium text-white">
+                            {Math.round(estimatorResult.tipRate * 100)}%
+                          </p>
+                        </div>
+                        {estimatorIsCharter ? (
+                          <>
+                            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+                                Charter price band
+                              </p>
+                              <p className="mt-2 font-medium text-white">
+                                {estimatorDisplayData?.charterPriceRange
+                                  ? formatMoneyRange(
+                                      estimatorDisplayData.charterPriceRange,
+                                      displayCurrency
+                                    )
+                                  : '—'}
+                              </p>
+                            </div>
+                            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+                                Estimated crew count
+                              </p>
+                              <p className="mt-2 font-medium text-white">
+                                {estimatorResult.crewCountRange
+                                  ? `${estimatorResult.crewCountRange.low} to ${estimatorResult.crewCountRange.high}`
+                                  : '—'}
+                              </p>
+                            </div>
+                            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+                                Charter weeks
+                              </p>
+                              <p className="mt-2 font-medium text-white">
+                                {estimatorResult.charterWeeksRange
+                                  ? `${estimatorResult.charterWeeksRange.low} to ${estimatorResult.charterWeeksRange.high}`
+                                  : '—'}
+                              </p>
+                            </div>
+                            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+                                Weekly tips per crew
+                              </p>
+                              <p className="mt-2 font-medium text-white">
+                                {estimatorDisplayData
+                                  ? formatMoneyRange(estimatorDisplayData.weeklyTips, displayCurrency)
+                                  : '—'}
+                              </p>
+                            </div>
+                          </>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    <div className="glass-card rounded-[1.75rem] border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-white/[0.03] to-transparent p-6">
+                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                        Where Hugo Adds Judgment
+                      </p>
+                      <h3 className="mt-3 text-xl font-semibold text-white">
+                        Use the model for speed, then add human context.
+                      </h3>
+                      <p className="mt-3 text-sm leading-6 text-slate-300">
+                        This is why the estimator belongs in the app. The benchmark tells you the
+                        market, the source table proves it, and Hugo&apos;s calculator helps turn that
+                        into a realistic package conversation. Final offers still move with
+                        itinerary, owner program, rotation, guest use, and specialist skills, so
+                        human judgment sits on top of the model, not behind it.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="glass-card rounded-[1.75rem] border border-white/10 p-8 text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-[1.4rem] border border-white/10 bg-white/5 text-orange-200">
+                  <Calculator className="h-8 w-8" />
+                </div>
+                <h3 className="mt-5 text-2xl font-semibold text-white">
+                  Choose a role to generate your package estimate
+                </h3>
+                <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-300">
+                  The estimator will surface once there is a valid role for the selected department
+                  and yacht-size band.
+                </p>
+              </div>
+            )}
+          </section>
+        )}
+
+        {viewMode === 'estimate' ? null : (
+          <section className="mt-8 glass-card rounded-[1.75rem] p-6">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                  Data Sources
+                </p>
+                <h3 className="mt-2 text-2xl font-semibold text-white">Benchmark sources in the guide</h3>
+              </div>
+              <p className="max-w-xl text-sm leading-6 text-slate-400">
+                Source cards glow when they match the currently selected role and yacht-size band.
+              </p>
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {availableSources.map((source) => {
+                const accent = sourceAccents[source] ?? SOURCE_ACCENTS[0];
+                const isHighlighted = comparisonData.some((record) => record.source === source);
+
+                return (
+                  <div
+                    key={source}
+                    className={`rounded-[1.4rem] border p-4 ${
+                      isHighlighted
+                        ? `${accent.card} border-white/10`
+                        : 'border-white/10 bg-white/[0.03]'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="font-semibold text-white">{source}</p>
+                        <p className="mt-1 text-sm text-slate-400">
+                          {sourceCounts[source]?.toLocaleString() ?? '0'} benchmark row
+                          {sourceCounts[source] === 1 ? '' : 's'}
+                        </p>
+                      </div>
+                      <span
+                        className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] ${
+                          isHighlighted
+                            ? accent.pill
+                            : 'border-white/10 bg-white/5 text-slate-300'
+                        }`}
+                      >
+                        {isHighlighted ? 'Match' : 'Available'}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
