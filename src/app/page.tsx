@@ -1612,21 +1612,6 @@ export default function SalaryGuide() {
                       </div>
                     </div>
 
-                    <div className="glass-card rounded-[1.75rem] border border-orange-500/20 bg-gradient-to-br from-orange-500/10 via-white/[0.03] to-transparent p-6">
-                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-                        Where Hugo Adds Judgment
-                      </p>
-                      <h3 className="mt-3 text-xl font-semibold text-white">
-                        Use the model for speed, then add human context.
-                      </h3>
-                      <p className="mt-3 text-sm leading-6 text-slate-300">
-                        This is why the estimator belongs in the app. The benchmark tells you the
-                        market, the source table proves it, and Hugo&apos;s calculator helps turn that
-                        into a realistic package conversation. Final offers still move with
-                        itinerary, owner program, rotation, guest use, and specialist skills, so
-                        human judgment sits on top of the model, not behind it.
-                      </p>
-                    </div>
                   </div>
                 </div>
               </>
