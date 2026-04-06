@@ -620,7 +620,7 @@ export default function SalaryGuide() {
                   onClick={() => setViewMode('table')}
                   className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition ${
                     viewMode === 'table'
-                      ? 'bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-500/20'
+                      ? 'bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-lg shadow-indigo-500/20'
                       : 'text-slate-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
@@ -631,7 +631,7 @@ export default function SalaryGuide() {
                   onClick={() => setViewMode('estimate')}
                   className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition ${
                     viewMode === 'estimate'
-                      ? 'bg-gradient-to-r from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-500/20'
+                      ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-lg shadow-emerald-500/20'
                       : 'text-slate-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
@@ -651,20 +651,38 @@ export default function SalaryGuide() {
                   const isActive = viewMode === mode;
                   const meta = VIEW_MODE_META[mode];
 
+                  const colorMap = {
+                    selector: {
+                      active: 'border-orange-400/20 bg-orange-500/10',
+                      badge: 'bg-orange-500/20 text-orange-300',
+                    },
+                    table: {
+                      active: 'border-indigo-400/20 bg-indigo-500/10',
+                      badge: 'bg-indigo-500/20 text-indigo-300',
+                    },
+                    estimate: {
+                      active: 'border-emerald-400/20 bg-emerald-500/10',
+                      badge: 'bg-emerald-500/20 text-emerald-300',
+                    },
+                  };
+
+                  const colors = colorMap[mode];
+
                   return (
-                    <div
+                    <button
                       key={mode}
-                      className={`rounded-2xl border px-4 py-3 transition ${
+                      onClick={() => setViewMode(mode)}
+                      className={`w-full cursor-pointer rounded-2xl border px-4 py-3 text-left transition ${
                         isActive
-                          ? 'border-orange-400/20 bg-orange-500/10'
-                          : 'border-white/8 bg-white/[0.03]'
+                          ? colors.active
+                          : 'border-white/8 bg-white/[0.03] hover:border-white/15 hover:bg-white/[0.06]'
                       }`}
                     >
                       <div className="flex items-start gap-3">
                         <span
                           className={`mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${
                             isActive
-                              ? 'bg-orange-500/20 text-white'
+                              ? colors.badge
                               : 'bg-white/5 text-slate-300'
                           }`}
                         >
@@ -675,7 +693,7 @@ export default function SalaryGuide() {
                           <p className="mt-1 text-xs leading-5 text-slate-400">{meta.description}</p>
                         </div>
                       </div>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
