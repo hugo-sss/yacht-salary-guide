@@ -2,15 +2,33 @@ import { createClient } from '@supabase/supabase-js';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { loadLocalEnvFiles } from './load-env.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+loadLocalEnvFiles(path.join(__dirname, '..'));
+
+type RawSalaryRecord = {
+  position: string;
+  yachtSize: string;
+  minSalary: number;
+  maxSalary: number;
+  currency: string;
+  source: string;
+  category: 'Deck' | 'Engineering' | 'Interior' | 'Culinary';
+};
+
 const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
+const supabaseKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.SUPABASE_SERVICE_KEY ||
+  process.env.SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
-  console.error('Missing Supabase credentials. Set SUPABASE_URL and SUPABASE_SERVICE_KEY');
+  console.error(
+    'Missing Supabase credentials. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local or your shell.'
+  );
   process.exit(1);
 }
 
@@ -20,12 +38,12 @@ async function importData() {
   // Read the JSON data
   const dataPath = path.join(__dirname, '..', 'salary-data.json');
   const rawData = fs.readFileSync(dataPath, 'utf-8');
-  const salaryData = JSON.parse(rawData);
+  const salaryData: RawSalaryRecord[] = JSON.parse(rawData);
   
   console.log(`Importing ${salaryData.length} salary records to Supabase...`);
   
   // Transform data to match Supabase schema
-  const records = salaryData.map((item: any) => ({
+  const records = salaryData.map((item) => ({
     position: item.position,
     yacht_size: item.yachtSize,
     min_salary: item.minSalary,
@@ -39,7 +57,7 @@ async function importData() {
   const batchSize = 50;
   for (let i = 0; i < records.length; i += batchSize) {
     const batch = records.slice(i, i + batchSize);
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('salary_benchmarks')
       .insert(batch);
     

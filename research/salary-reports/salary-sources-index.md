@@ -92,7 +92,7 @@ Last Updated: March 4, 2026
 - **URL:** https://whitewaterrecruitment.com/yacht-crew-salary-guide/
 - **Type:** Recruitment agency
 - **Published:** October 13, 2025
-- **Status:** 🔍 TO BE FETCHED
+- **Status:** ✅ ARCHIVED FROM USER-PROVIDED PDF
 
 ### 12. YB Crew - Yacht Crew Salaries Guideline 2026
 - **URL:** https://www.ybcrew.com/info/guida-ai-salari-per-i-marittimi.html
@@ -164,14 +164,14 @@ Last Updated: March 4, 2026
 2. ✅ Lighthouse Careers - Full text extracted
 3. ✅ YATCO - Future trends (limited salary data)
 4. ✅ YPI CREW - Full text extracted
+5. ✅ Dockwalk 2024 Survey - PDF archived and methodology captured
+6. ✅ Whitewater Recruitment 2025 Guide - PDF archived and extracted
 
 ### Pending Fetches
-- [ ] Dockwalk 2025 Survey
 - [ ] Morgan & Mallet 2026 Guide
 - [ ] Quay Group Captain Report
 - [ ] Yachtly Crew 26 Positions
 - [ ] UKSA Guide
-- [ ] Whitewater Recruitment
 - [ ] Yotspot Guidelines
 - [ ] McGregor Financial Benchmarks
 - [ ] YB Crew Guidelines

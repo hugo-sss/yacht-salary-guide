@@ -1,0 +1,362 @@
+[
+  {
+    "position": "Captain",
+    "yachtSize": "45-50m",
+    "minSalary": 9000,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Captain",
+    "yachtSize": "50-55m",
+    "minSalary": 10000,
+    "maxSalary": 14000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Captain",
+    "yachtSize": "55-60m",
+    "minSalary": 13000,
+    "maxSalary": 16000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Captain",
+    "yachtSize": "60-70m",
+    "minSalary": 14000,
+    "maxSalary": 14000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Captain",
+    "yachtSize": "70m+",
+    "minSalary": 15000,
+    "maxSalary": 15000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "First Officer",
+    "yachtSize": "45-50m",
+    "minSalary": 4500,
+    "maxSalary": 6000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "First Officer",
+    "yachtSize": "50-55m",
+    "minSalary": 5500,
+    "maxSalary": 7000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "First Officer",
+    "yachtSize": "55-60m",
+    "minSalary": 6000,
+    "maxSalary": 7500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "First Officer",
+    "yachtSize": "60-70m",
+    "minSalary": 6500,
+    "maxSalary": 6500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "First Officer",
+    "yachtSize": "70m+",
+    "minSalary": 7000,
+    "maxSalary": 7000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "2nd Mate/Bosun",
+    "yachtSize": "45-50m",
+    "minSalary": 3200,
+    "maxSalary": 4000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "2nd Mate/Bosun",
+    "yachtSize": "50-55m",
+    "minSalary": 3500,
+    "maxSalary": 4500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "2nd Mate/Bosun",
+    "yachtSize": "55-60m",
+    "minSalary": 4000,
+    "maxSalary": 4000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "2nd Mate/Bosun",
+    "yachtSize": "60-70m",
+    "minSalary": 4500,
+    "maxSalary": 4500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "2nd Mate/Bosun",
+    "yachtSize": "70m+",
+    "minSalary": 5000,
+    "maxSalary": 5000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Deckhand",
+    "yachtSize": "45-50m",
+    "minSalary": 2800,
+    "maxSalary": 3500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Deckhand",
+    "yachtSize": "50-55m",
+    "minSalary": 2800,
+    "maxSalary": 3500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Deckhand",
+    "yachtSize": "55-60m",
+    "minSalary": 2800,
+    "maxSalary": 3500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Deckhand",
+    "yachtSize": "60-70m",
+    "minSalary": 2800,
+    "maxSalary": 3500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Deckhand",
+    "yachtSize": "70m+",
+    "minSalary": 3000,
+    "maxSalary": 3000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Deck"
+  },
+  {
+    "position": "Chief Engineer",
+    "yachtSize": "45-50m",
+    "minSalary": 7000,
+    "maxSalary": 9500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Chief Engineer",
+    "yachtSize": "50-55m",
+    "minSalary": 8500,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Chief Engineer",
+    "yachtSize": "55-60m",
+    "minSalary": 6500,
+    "maxSalary": 8000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Chief Engineer",
+    "yachtSize": "60-70m",
+    "minSalary": 7000,
+    "maxSalary": 10000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Chief Engineer",
+    "yachtSize": "70m+",
+    "minSalary": 8500,
+    "maxSalary": 8500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Chef/Cook",
+    "yachtSize": "45-50m",
+    "minSalary": 5500,
+    "maxSalary": 6500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Chef/Cook",
+    "yachtSize": "50-55m",
+    "minSalary": 6000,
+    "maxSalary": 8000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Chef/Cook",
+    "yachtSize": "55-60m",
+    "minSalary": 6500,
+    "maxSalary": 8500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Chef/Cook",
+    "yachtSize": "60-70m",
+    "minSalary": 7000,
+    "maxSalary": 7000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Chef/Cook",
+    "yachtSize": "70m+",
+    "minSalary": 8000,
+    "maxSalary": 8000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Chief Steward(ess)/Purser",
+    "yachtSize": "45-50m",
+    "minSalary": 2800,
+    "maxSalary": 4000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  },
+  {
+    "position": "Chief Steward(ess)/Purser",
+    "yachtSize": "50-55m",
+    "minSalary": 3000,
+    "maxSalary": 4000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  },
+  {
+    "position": "Chief Steward(ess)/Purser",
+    "yachtSize": "55-60m",
+    "minSalary": 3000,
+    "maxSalary": 3000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  },
+  {
+    "position": "Chief Steward(ess)/Purser",
+    "yachtSize": "60-70m",
+    "minSalary": 3000,
+    "maxSalary": 3000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  },
+  {
+    "position": "Chief Steward(ess)/Purser",
+    "yachtSize": "70m+",
+    "minSalary": 3000,
+    "maxSalary": 3000,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  },
+  {
+    "position": "Steward(ess)",
+    "yachtSize": "45-50m",
+    "minSalary": 2200,
+    "maxSalary": 2500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  },
+  {
+    "position": "Steward(ess)",
+    "yachtSize": "50-55m",
+    "minSalary": 2200,
+    "maxSalary": 2500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  },
+  {
+    "position": "Steward(ess)",
+    "yachtSize": "55-60m",
+    "minSalary": 2200,
+    "maxSalary": 2500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  },
+  {
+    "position": "Steward(ess)",
+    "yachtSize": "60-70m",
+    "minSalary": 2200,
+    "maxSalary": 2500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  },
+  {
+    "position": "Steward(ess)",
+    "yachtSize": "70m+",
+    "minSalary": 2200,
+    "maxSalary": 2500,
+    "currency": "EUR",
+    "source": "UKSA (2025)",
+    "department": "Interior"
+  }
+]

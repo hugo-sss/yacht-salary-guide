@@ -1,0 +1,20 @@
+[
+  {
+    "position": "Captain",
+    "yachtSize": "100m+",
+    "minSalary": 22000,
+    "maxSalary": 32000,
+    "currency": "EUR",
+    "source": "Example Source (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Chief Engineer",
+    "yachtSize": "80-100m",
+    "minSalary": 11000,
+    "maxSalary": 17000,
+    "currency": "EUR",
+    "source": "Example Source (2026)",
+    "department": "Engineering"
+  }
+]

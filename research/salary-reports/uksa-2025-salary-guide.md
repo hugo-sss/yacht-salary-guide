@@ -2,7 +2,9 @@
 
 **Source:** https://uksa.org/superyacht-salary-guide/  
 **Published:** January 2025  
-**Type:** Maritime training organization
+**Type:** Maritime training organization  
+**Captured:** April 6, 2026  
+**Status:** Screenshot-backed source capture
 
 ---
 
@@ -31,6 +33,7 @@ Currency: EUR/month
 
 ## Notes
 
+- This table is now backed by a user-supplied screenshot capture of the published UKSA salary guide.
 - Based on current yachting market as of January 2025
 - Actual salaries vary by experience, training, certification, skills, and yacht needs
 - Career progression: Steward(ess) → Chief Steward(ess) → Purser

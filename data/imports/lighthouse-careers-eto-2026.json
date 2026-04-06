@@ -1,0 +1,29 @@
+[
+  {
+    "position": "ETO / AV-IT",
+    "yachtSize": "40-60m",
+    "minSalary": 6250,
+    "maxSalary": 9583,
+    "currency": "USD",
+    "source": "Lighthouse Careers (ETO 2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "yachtSize": "60-80m",
+    "minSalary": 9583,
+    "maxSalary": 12500,
+    "currency": "USD",
+    "source": "Lighthouse Careers (ETO 2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "ETO / AV-IT",
+    "yachtSize": "80m+",
+    "minSalary": 14583,
+    "maxSalary": 18333,
+    "currency": "USD",
+    "source": "Lighthouse Careers (ETO 2026)",
+    "department": "Engineering"
+  }
+]

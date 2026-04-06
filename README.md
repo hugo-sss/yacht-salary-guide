@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yacht Salary Guide
 
-## Getting Started
+Next.js app for comparing yacht crew salary benchmarks across roles, yacht sizes, and published salary guides.
 
-First, run the development server:
+## Runtime Data Source
+
+The live app is Supabase-first:
+
+- Primary source: `salary_benchmarks` in Supabase
+- Runtime fetch path: [src/lib/supabase.ts](/Users/hugo-sss/yacht-salary-guide/src/lib/supabase.ts)
+- Fallback source: [salary-data.json](/Users/hugo-sss/yacht-salary-guide/salary-data.json) if the live fetch fails
+
+## Add More Salary Data
+
+You now have a repeatable import path for adding new salary rows without editing app code.
+
+### 1. Add Supabase credentials
+
+Create `.env.local` in the project root with:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If you want the app itself to read from a different public project in development, you can also add:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Create an import file
 
-## Learn More
+Copy the template:
 
-To learn more about Next.js, take a look at the following resources:
+`data/imports/salary-import.template.json`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Expected shape:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```json
+[
+  {
+    "position": "Captain",
+    "yachtSize": "100m+",
+    "minSalary": 22000,
+    "maxSalary": 32000,
+    "currency": "EUR",
+    "source": "Example Source (2026)",
+    "department": "Deck"
+  }
+]
+```
 
-## Deploy on Vercel
+Allowed department values:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `Deck`
+- `Engineering`
+- `Interior`
+- `Culinary`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3. Dry-run the import
+
+```bash
+npm run supabase:upsert -- --file data/imports/my-new-source.json
+```
+
+This validates and dedupes the file but does not write to Supabase.
+
+### 4. Write to Supabase
+
+Append new rows:
+
+```bash
+npm run supabase:upsert -- --file data/imports/my-new-source.json --write
+```
+
+Replace all existing rows for the source(s) in that file, then insert the new ones:
+
+```bash
+npm run supabase:upsert -- --file data/imports/my-new-source.json --write --replace-source
+```
+
+`--replace-source` is the safest option when you are refreshing a whole source like `Dockwalk Salary Survey (2026)`.
+
+## Other Data Scripts
+
+Seed Supabase from the main bundled JSON:
+
+```bash
+npm run supabase:import
+```
+
+Transfer `salary_benchmarks` between two Supabase projects:
+
+```bash
+npm run supabase:transfer
+```
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Verification
+
+```bash
+npm run lint
+npm run build
+```

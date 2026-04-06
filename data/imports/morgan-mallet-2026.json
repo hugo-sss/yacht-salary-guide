@@ -1,0 +1,911 @@
+[
+  {
+    "position": "Captain",
+    "yachtSize": "Below 30m",
+    "minSalary": 4200,
+    "maxSalary": 7200,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "First Mate / Deckhand",
+    "yachtSize": "Below 30m",
+    "minSalary": 1550,
+    "maxSalary": 2300,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Engineer (or Captain/Engineer)",
+    "yachtSize": "Below 30m",
+    "minSalary": 1900,
+    "maxSalary": 2900,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Steward/Stewardess (or Solo Stew)",
+    "yachtSize": "Below 30m",
+    "minSalary": 1400,
+    "maxSalary": 1850,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Chef (small yacht)",
+    "yachtSize": "Below 30m",
+    "minSalary": 1900,
+    "maxSalary": 2900,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Cook/Stew",
+    "yachtSize": "Below 30m",
+    "minSalary": 1550,
+    "maxSalary": 2400,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Captain",
+    "yachtSize": "30-40m",
+    "minSalary": 5600,
+    "maxSalary": 9600,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "First Mate / Deckhand",
+    "yachtSize": "30-40m",
+    "minSalary": 2100,
+    "maxSalary": 3050,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Engineer (or Captain/Engineer)",
+    "yachtSize": "30-40m",
+    "minSalary": 2550,
+    "maxSalary": 3850,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Steward/Stewardess (or Solo Stew)",
+    "yachtSize": "30-40m",
+    "minSalary": 1850,
+    "maxSalary": 2500,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Chef (small yacht)",
+    "yachtSize": "30-40m",
+    "minSalary": 2550,
+    "maxSalary": 3850,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Cook/Stew",
+    "yachtSize": "30-40m",
+    "minSalary": 2100,
+    "maxSalary": 3200,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Captain",
+    "yachtSize": "40-50m",
+    "minSalary": 7000,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Chief Officer / First Officer",
+    "yachtSize": "40-50m",
+    "minSalary": 4500,
+    "maxSalary": 7000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Bosun",
+    "yachtSize": "40-50m",
+    "minSalary": 3000,
+    "maxSalary": 4500,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Lead Deckhand",
+    "yachtSize": "40-50m",
+    "minSalary": 2800,
+    "maxSalary": 3800,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Deckhand",
+    "yachtSize": "40-50m",
+    "minSalary": 2200,
+    "maxSalary": 3000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Chief Engineer",
+    "yachtSize": "40-50m",
+    "minSalary": 6500,
+    "maxSalary": 10000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Second Engineer",
+    "yachtSize": "40-50m",
+    "minSalary": 4500,
+    "maxSalary": 7500,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "ETO",
+    "yachtSize": "40-50m",
+    "minSalary": 4000,
+    "maxSalary": 6500,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Chief Steward/Stewardess",
+    "yachtSize": "40-50m",
+    "minSalary": 4500,
+    "maxSalary": 6500,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Second Steward/Stewardess",
+    "yachtSize": "40-50m",
+    "minSalary": 3200,
+    "maxSalary": 4800,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Third Steward/Stewardess",
+    "yachtSize": "40-50m",
+    "minSalary": 2400,
+    "maxSalary": 3200,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Laundry Steward/Stewardess",
+    "yachtSize": "40-50m",
+    "minSalary": 2200,
+    "maxSalary": 2800,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Cook/Stew",
+    "yachtSize": "40-50m",
+    "minSalary": 2600,
+    "maxSalary": 4000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Head Chef",
+    "yachtSize": "40-50m",
+    "minSalary": 6000,
+    "maxSalary": 9000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Sous Chef",
+    "yachtSize": "40-50m",
+    "minSalary": 3500,
+    "maxSalary": 5500,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Captain",
+    "yachtSize": "50-70m",
+    "minSalary": 9100,
+    "maxSalary": 15600,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Chief Officer / First Officer",
+    "yachtSize": "50-70m",
+    "minSalary": 5850,
+    "maxSalary": 9100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Second Officer",
+    "yachtSize": "50-70m",
+    "minSalary": 4550,
+    "maxSalary": 7150,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Bosun",
+    "yachtSize": "50-70m",
+    "minSalary": 3900,
+    "maxSalary": 5850,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Lead Deckhand",
+    "yachtSize": "50-70m",
+    "minSalary": 3650,
+    "maxSalary": 4950,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Deckhand",
+    "yachtSize": "50-70m",
+    "minSalary": 2850,
+    "maxSalary": 3900,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Carpenter",
+    "yachtSize": "50-70m",
+    "minSalary": 3650,
+    "maxSalary": 5200,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Chief Engineer",
+    "yachtSize": "50-70m",
+    "minSalary": 8450,
+    "maxSalary": 13000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Second Engineer",
+    "yachtSize": "50-70m",
+    "minSalary": 5850,
+    "maxSalary": 9750,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Third Engineer",
+    "yachtSize": "50-70m",
+    "minSalary": 3900,
+    "maxSalary": 5850,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "ETO",
+    "yachtSize": "50-70m",
+    "minSalary": 5200,
+    "maxSalary": 8450,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "AV/IT Manager",
+    "yachtSize": "50-70m",
+    "minSalary": 5450,
+    "maxSalary": 8850,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Assistant Engineer",
+    "yachtSize": "50-70m",
+    "minSalary": 3250,
+    "maxSalary": 4550,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Motorman",
+    "yachtSize": "50-70m",
+    "minSalary": 3000,
+    "maxSalary": 4300,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Purser",
+    "yachtSize": "50-70m",
+    "minSalary": 7150,
+    "maxSalary": 11050,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Chief Steward/Stewardess",
+    "yachtSize": "50-70m",
+    "minSalary": 5850,
+    "maxSalary": 8450,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Head of Service",
+    "yachtSize": "50-70m",
+    "minSalary": 4950,
+    "maxSalary": 7400,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Head of Housekeeping",
+    "yachtSize": "50-70m",
+    "minSalary": 4700,
+    "maxSalary": 7000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Service Steward/Stewardess",
+    "yachtSize": "50-70m",
+    "minSalary": 3100,
+    "maxSalary": 4150,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Housekeeper",
+    "yachtSize": "50-70m",
+    "minSalary": 3000,
+    "maxSalary": 4050,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Laundry Steward/Stewardess",
+    "yachtSize": "50-70m",
+    "minSalary": 2850,
+    "maxSalary": 3650,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Spa Therapist",
+    "yachtSize": "50-70m",
+    "minSalary": 3400,
+    "maxSalary": 4950,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Masseuse",
+    "yachtSize": "50-70m",
+    "minSalary": 3400,
+    "maxSalary": 4950,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Nanny",
+    "yachtSize": "50-70m",
+    "minSalary": 3400,
+    "maxSalary": 5450,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Head Chef",
+    "yachtSize": "50-70m",
+    "minSalary": 7800,
+    "maxSalary": 11700,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Sous Chef",
+    "yachtSize": "50-70m",
+    "minSalary": 4550,
+    "maxSalary": 7150,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Crew Chef",
+    "yachtSize": "50-70m",
+    "minSalary": 3900,
+    "maxSalary": 5850,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Pastry Chef",
+    "yachtSize": "50-70m",
+    "minSalary": 4150,
+    "maxSalary": 6250,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Culinary"
+  },
+  {
+    "position": "Captain",
+    "yachtSize": "70-90m",
+    "minSalary": 11200,
+    "maxSalary": 19200,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Staff Captain",
+    "yachtSize": "70-90m",
+    "minSalary": 10400,
+    "maxSalary": 18400,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Chief Officer / First Officer",
+    "yachtSize": "70-90m",
+    "minSalary": 7200,
+    "maxSalary": 11200,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Second Officer",
+    "yachtSize": "70-90m",
+    "minSalary": 5600,
+    "maxSalary": 8800,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Third Officer",
+    "yachtSize": "70-90m",
+    "minSalary": 5100,
+    "maxSalary": 8300,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Bosun",
+    "yachtSize": "70-90m",
+    "minSalary": 4800,
+    "maxSalary": 7200,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Lead Deckhand",
+    "yachtSize": "70-90m",
+    "minSalary": 4500,
+    "maxSalary": 6100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Lead Tender Driver",
+    "yachtSize": "70-90m",
+    "minSalary": 4150,
+    "maxSalary": 5750,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Deckhand",
+    "yachtSize": "70-90m",
+    "minSalary": 3500,
+    "maxSalary": 4800,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Dive Instructor",
+    "yachtSize": "70-90m",
+    "minSalary": 4150,
+    "maxSalary": 6100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Water Sports Instructor",
+    "yachtSize": "70-90m",
+    "minSalary": 3850,
+    "maxSalary": 5750,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Carpenter",
+    "yachtSize": "70-90m",
+    "minSalary": 4500,
+    "maxSalary": 6400,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Plumber (Deck Dept)",
+    "yachtSize": "70-90m",
+    "minSalary": 4150,
+    "maxSalary": 6100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Crane Operator",
+    "yachtSize": "70-90m",
+    "minSalary": 4800,
+    "maxSalary": 7350,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Helideck Officer / HLO",
+    "yachtSize": "70-90m",
+    "minSalary": 5600,
+    "maxSalary": 8000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "HDA (Helideck Assistant)",
+    "yachtSize": "70-90m",
+    "minSalary": 4150,
+    "maxSalary": 6100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Security Officer (Deck)",
+    "yachtSize": "70-90m",
+    "minSalary": 5100,
+    "maxSalary": 7700,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Night Watch Deckhand",
+    "yachtSize": "70-90m",
+    "minSalary": 3700,
+    "maxSalary": 4950,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Chief Engineer",
+    "yachtSize": "70-90m",
+    "minSalary": 10400,
+    "maxSalary": 16000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Staff Chief Engineer",
+    "yachtSize": "70-90m",
+    "minSalary": 9900,
+    "maxSalary": 15700,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Second Engineer",
+    "yachtSize": "70-90m",
+    "minSalary": 7200,
+    "maxSalary": 12000,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Third Engineer",
+    "yachtSize": "70-90m",
+    "minSalary": 4800,
+    "maxSalary": 7200,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Fourth Engineer",
+    "yachtSize": "70-90m",
+    "minSalary": 4500,
+    "maxSalary": 6700,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Junior Engineer",
+    "yachtSize": "70-90m",
+    "minSalary": 4000,
+    "maxSalary": 5600,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Motorman",
+    "yachtSize": "70-90m",
+    "minSalary": 3700,
+    "maxSalary": 5300,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Oiler",
+    "yachtSize": "70-90m",
+    "minSalary": 3500,
+    "maxSalary": 4800,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "ETO",
+    "yachtSize": "70-90m",
+    "minSalary": 6400,
+    "maxSalary": 10400,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "AV/IT Manager",
+    "yachtSize": "70-90m",
+    "minSalary": 6700,
+    "maxSalary": 10900,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "AV/IT Technician",
+    "yachtSize": "70-90m",
+    "minSalary": 5100,
+    "maxSalary": 7700,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "HVAC Technician",
+    "yachtSize": "70-90m",
+    "minSalary": 5100,
+    "maxSalary": 7700,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Plumber (Engineer Dept)",
+    "yachtSize": "70-90m",
+    "minSalary": 4150,
+    "maxSalary": 6100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Electrician",
+    "yachtSize": "70-90m",
+    "minSalary": 5100,
+    "maxSalary": 7700,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Mechanical Technician",
+    "yachtSize": "70-90m",
+    "minSalary": 4800,
+    "maxSalary": 7050,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Engine Room Attendant",
+    "yachtSize": "70-90m",
+    "minSalary": 3500,
+    "maxSalary": 4800,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Engineering"
+  },
+  {
+    "position": "Purser",
+    "yachtSize": "70-90m",
+    "minSalary": 8800,
+    "maxSalary": 13600,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Hotel Manager",
+    "yachtSize": "70-90m",
+    "minSalary": 8800,
+    "maxSalary": 14400,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Interior Manager",
+    "yachtSize": "70-90m",
+    "minSalary": 8000,
+    "maxSalary": 12800,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Chief Steward/Stewardess",
+    "yachtSize": "70-90m",
+    "minSalary": 7200,
+    "maxSalary": 10400,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Head of Service",
+    "yachtSize": "70-90m",
+    "minSalary": 6100,
+    "maxSalary": 9100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Senior Service Steward/Stewardess",
+    "yachtSize": "70-90m",
+    "minSalary": 5100,
+    "maxSalary": 7700,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Service Steward/Stewardess",
+    "yachtSize": "70-90m",
+    "minSalary": 3850,
+    "maxSalary": 5100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Bartender",
+    "yachtSize": "70-90m",
+    "minSalary": 3850,
+    "maxSalary": 5100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Deck"
+  },
+  {
+    "position": "Barista",
+    "yachtSize": "70-90m",
+    "minSalary": 3500,
+    "maxSalary": 4800,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Sommelier",
+    "yachtSize": "70-90m",
+    "minSalary": 4500,
+    "maxSalary": 6400,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Mixologist",
+    "yachtSize": "70-90m",
+    "minSalary": 4150,
+    "maxSalary": 6100,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  },
+  {
+    "position": "Butler",
+    "yachtSize": "70-90m",
+    "minSalary": 5100,
+    "maxSalary": 7700,
+    "currency": "EUR",
+    "source": "Morgan & Mallet (2026)",
+    "department": "Interior"
+  }
+]

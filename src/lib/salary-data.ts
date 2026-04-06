@@ -23,7 +23,7 @@ export const yachtSizes = [
 ];
 
 // Mapping from data formats to standard sizes
-const sizeMapping: Record<string, string> = {
+export const sizeMapping: Record<string, string> = {
   '20-40m': '30-40m',
   '40-60m': '50-60m',
   '60m+': '60-80m',

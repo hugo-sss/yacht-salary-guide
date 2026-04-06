@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
+import { Outfit } from "next/font/google";
 import "./globals.css";
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
 
 export const metadata: Metadata = {
   title: "Yacht Crew Salary Guide 2026",
-  description: "Compare yacht crew salaries across positions and yacht sizes from industry-leading sources",
+  description:
+    "Compare yacht crew salaries across roles, yacht sizes, and published industry salary sources.",
 };
 
 export default function RootLayout({
@@ -13,10 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
-      </head>
-      <body className="antialiased">{children}</body>
+      <body className={`${outfit.className} antialiased`}>{children}</body>
     </html>
   );
 }

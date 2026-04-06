@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "salary:parse": "node scripts/parse-salary-reports.cjs",
+    "supabase:import": "node --no-warnings=ExperimentalWarning --loader ts-node/esm scripts/import-to-supabase.ts",
+    "supabase:transfer": "node --no-warnings=ExperimentalWarning --loader ts-node/esm scripts/transfer-salary-benchmarks.ts",
+    "supabase:upsert": "node scripts/upsert-salary-data.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.98.0",
