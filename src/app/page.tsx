@@ -291,6 +291,27 @@ function getDisplayStats(
   };
 }
 
+// ── Conversion bridge (Hugo, 2026-07-18) ────────────────────────────────────
+// The calculator is the top of the funnel: content → this tool → the CV app /
+// Hugo's free 30-min discovery call. UTM params trace which surface converts
+// (Calendly UTM report + PostHog once NEXT_PUBLIC_POSTHOG_KEY is set).
+const BOOK_CALL_BASE = 'https://calendly.com/superyachtsundayschool/intro';
+const CV_APP_URL =
+  'https://cv.superyachtsundayschool.app/?utm_source=salary_guide&utm_content=hero';
+
+function bookCallUrl(placement: string): string {
+  return `${BOOK_CALL_BASE}?utm_source=salary_guide&utm_content=${placement}`;
+}
+
+// PostHog is loaded (when configured) by the snippet in layout.tsx; clicks
+// before it loads simply aren't captured — the Calendly UTMs still are.
+function trackCta(event: string, props?: Record<string, unknown>): void {
+  if (typeof window === 'undefined') return;
+  const ph = (window as unknown as { posthog?: { capture: (e: string, p?: object) => void } })
+    .posthog;
+  ph?.capture(event, props);
+}
+
 export default function SalaryGuide() {
   const [salaryData, setSalaryData] = useState<SalaryRecord[]>(() => getBundledSalaryData());
   const [loading, setLoading] = useState(false);
@@ -574,6 +595,15 @@ export default function SalaryGuide() {
                   <Radar className="h-4 w-4 text-orange-200" />
                   Standardized for comparison
                 </span>
+                <a
+                  href={CV_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackCta('cv_app_link_clicked', { placement: 'hero' })}
+                  className="inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-500/15 px-3 py-1.5 text-sm font-semibold text-orange-100 transition hover:bg-orange-500/25 hover:text-white"
+                >
+                  Build your yacht CV free →
+                </a>
                 <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 p-1 text-sm text-slate-200">
                   <button
                     onClick={() => setDisplayCurrency('EUR')}
@@ -994,6 +1024,17 @@ export default function SalaryGuide() {
                       tip percentage, and charter weeks from the workbook.
                     </p>
                   </div>
+                  <a
+                    href={bookCallUrl('estimate_snapshot')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() =>
+                      trackCta('book_call_cta_clicked', { placement: 'estimate_snapshot' })
+                    }
+                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#F74A1C] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/25 transition hover:bg-[#FF5A2C]"
+                  >
+                    Want this package for real? Free call with Hugo →
+                  </a>
                 </div>
               ) : (
                 <p className="mt-4 text-sm leading-6 text-slate-300">
@@ -1530,6 +1571,52 @@ export default function SalaryGuide() {
                           ? formatMoneyRange(estimatorDisplayData.annualTotal, displayCurrency)
                           : '—'}
                       </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Conversion bridge — the peak-intent pixel: they just saw their
+                    personalized package. One door: Hugo's free 30-min call. */}
+                <div className="glass-card relative overflow-hidden rounded-[1.75rem] border border-orange-400/25 p-6 sm:p-8">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.18),transparent_55%)]" />
+                  <div className="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+                    <div className="max-w-2xl">
+                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-200">
+                        Make it real
+                      </p>
+                      <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">
+                        That number isn&apos;t a fantasy — it&apos;s a plan away.
+                      </h3>
+                      <p className="mt-3 text-sm leading-6 text-slate-300">
+                        Crew Hugo coaches walk into these packages with the right certs, a CV
+                        captains actually read, and the door knocked on the right way. Start with a
+                        free 30-minute call — where you&apos;re at, what&apos;s in the way, and your
+                        next three moves. No pitch-slapping, genuinely free.
+                      </p>
+                    </div>
+                    <div className="flex flex-col items-start gap-3 lg:items-end">
+                      <a
+                        href={bookCallUrl('estimate_results')}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() =>
+                          trackCta('book_call_cta_clicked', { placement: 'estimate_results' })
+                        }
+                        className="inline-flex items-center gap-2 rounded-2xl bg-[#F74A1C] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-500/25 transition hover:bg-[#FF5A2C]"
+                      >
+                        Book a free call with Hugo →
+                      </a>
+                      <a
+                        href={CV_APP_URL.replace('utm_content=hero', 'utm_content=estimate_results')}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() =>
+                          trackCta('cv_app_link_clicked', { placement: 'estimate_results' })
+                        }
+                        className="text-sm text-slate-300 underline underline-offset-4 transition hover:text-white"
+                      >
+                        or build your yacht CV free
+                      </a>
                     </div>
                   </div>
                 </div>
