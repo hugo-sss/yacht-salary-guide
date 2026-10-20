@@ -19,6 +19,8 @@ const eslintConfig = defineConfig([
     "build/**",
     "dist/**",
     "next-env.d.ts",
+    // Deno edge function (deployed to SSS_Brain), checked with deno, not Next:
+    "supabase/functions/**",
   ]),
 ]);
 
