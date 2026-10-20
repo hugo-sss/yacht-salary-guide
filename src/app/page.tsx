@@ -43,6 +43,7 @@ import {
   getEstimatorAvailableSizes,
   getEstimatorPositions,
 } from '@/lib/compensation-estimator';
+import PayCheck from '@/components/PayCheck';
 
 type ViewMode = 'selector' | 'table' | 'estimate';
 type DisplayCurrency = 'EUR' | 'USD';
@@ -1035,6 +1036,13 @@ export default function SalaryGuide() {
                   >
                     Want this package for real? Free call with Hugo →
                   </a>
+                  <a
+                    href="#pay-check"
+                    onClick={() => trackCta('paycheck_link_clicked', { placement: 'estimate_snapshot' })}
+                    className="block text-center text-sm text-slate-300 underline underline-offset-4 transition hover:text-white"
+                  >
+                    Already on a boat? Check if you&apos;re paid enough
+                  </a>
                 </div>
               ) : (
                 <p className="mt-4 text-sm leading-6 text-slate-300">
@@ -1574,6 +1582,19 @@ export default function SalaryGuide() {
                     </div>
                   </div>
                 </div>
+
+                {/* Pay check: crew compare their pay, hirers their offer. Captures the lead
+                    (paycheck-ingest in SSS_Brain, Flodesk only with consent). */}
+                <PayCheck
+                  department={estimatorResult.department}
+                  position={estimatorResult.position}
+                  yachtSize={estimatorResult.yachtSize}
+                  yachtType={estimatorResult.yachtType}
+                  bandLowEur={estimatorResult.monthlySalary.low}
+                  bandHighEur={estimatorResult.monthlySalary.high}
+                  currency={displayCurrency}
+                  bookCallUrl={bookCallUrl}
+                />
 
                 {/* Conversion bridge — the peak-intent pixel: they just saw their
                     personalized package. One door: Hugo's free 30-min call. */}
