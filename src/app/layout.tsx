@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -8,9 +9,10 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Yacht Crew Salary Guide 2026",
-  description:
-    "Compare yacht crew salaries across roles, yacht sizes, and published industry salary sources.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
 };
 
 // PostHog — same project as the CV app so the whole funnel (calculator →
