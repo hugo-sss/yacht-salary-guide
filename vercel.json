@@ -18,5 +18,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://yachtcrewup.com/pay",
+      "permanent": false
+    }
   ]
 }
